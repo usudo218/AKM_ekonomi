@@ -8,18 +8,19 @@
     <script src="siswa.js"></script>
     <style>
         :root {
-            /* Tema Biru Muda Baru */
-            --primary-blue: #3498db;
-            --dark-blue: #2980b9;
-            --bg-gradient: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+            /* Tema Sky Blue Khusus */
+            --bg-sky: #87CEEB;
+            --primary-blue: #00BFFF; /* Deep Sky Blue untuk komponen utama */
+            --dark-blue: #1E90FF;    /* Blue Dodger untuk efek hover */
             --text-dark: #2d3436;
+            --card-white: #ffffff;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--bg-gradient);
+            background-color: var(--bg-sky); /* Background sesuai permintaan */
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -31,7 +32,7 @@
         }
 
         .card {
-            background: white;
+            background: var(--card-white);
             width: 100%;
             max-width: 500px;
             padding: 30px;
@@ -62,8 +63,8 @@
         }
 
         .timer-box { 
-            background: #ffeaa7; color: #d63031; padding: 10px; border-radius: 10px; 
-            font-weight: 700; text-align: center; margin-bottom: 15px; border: 1px solid #fdcb6e;
+            background: #fff9db; color: #e67e22; padding: 10px; border-radius: 10px; 
+            font-weight: 700; text-align: center; margin-bottom: 15px; border: 1px solid #fab005;
         }
 
         .info-siswa { background: #f1f2f6; padding: 10px; border-radius: 10px; margin-bottom: 15px; font-size: 13px; line-height: 1.6; text-align: left; }
@@ -72,17 +73,19 @@
             width: 100%; padding: 15px; background-color: var(--primary-blue);
             color: white; border: none; border-radius: 10px; font-weight: 700;
             cursor: pointer; transition: 0.3s; text-transform: uppercase;
+            box-shadow: 0 4px 6px rgba(0, 191, 255, 0.2);
         }
 
         button:hover { background-color: var(--dark-blue); }
         button:disabled { background-color: #ccc; cursor: not-allowed; }
-        .btn-logout { background-color: #fab1a0; color: #d63031; margin-top: 10px; font-size: 12px; padding: 10px; }
+        .btn-logout { background-color: #ffcccc; color: #c0392b; margin-top: 10px; font-size: 12px; padding: 10px; box-shadow: none; }
 
         .opsi-item {
             display: block; padding: 15px; margin: 10px 0; border: 2px solid #f1f2f6;
-            border-radius: 12px; cursor: pointer; text-align: left;
+            border-radius: 12px; cursor: pointer; text-align: left; transition: 0.2s;
         }
-        .opsi-item:has(input:checked) { border-color: var(--primary-blue); background-color: #ebf8ff; }
+        /* Highlight warna biru muda saat opsi dipilih */
+        .opsi-item:has(input:checked) { border-color: var(--primary-blue); background-color: #f0faff; }
 
         .bar { width: 100%; height: 8px; background: #eee; border-radius: 10px; margin: 15px 0; overflow: hidden; }
         #progress { height: 100%; background: var(--primary-blue); width: 0%; transition: 0.4s; }
@@ -94,7 +97,7 @@
 
         #loading-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg-gradient); display: none;
+            background: var(--bg-sky); display: none;
             flex-direction: column; justify-content: center; align-items: center; z-index: 9999;
         }
 
@@ -105,7 +108,7 @@
 
 <div id="loading-overlay">
     <div style="border: 4px solid rgba(255,255,255,0.3); border-top: 4px solid white; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite;"></div>
-    <p style="margin-top: 15px; color: white; font-weight: 600;">Sinkronisasi Data...</p>
+    <p style="margin-top: 15px; color: white; font-weight: 600;">Menghubungkan Server...</p>
 </div>
 
 <div class="card">
@@ -113,7 +116,7 @@
         <div class="header-container">
             <img src="logo.png" class="logo-img" alt="Logo" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Logo_Tut_Wuri_Handayani.png/100px-Logo_Tut_Wuri_Handayani.png'">
             <h1 class="title-uts">Ujian Tengah Semester</h1>
-            <p style="color:var(--dark-blue); font-weight:600;">INFORMATIKA</p>
+            <p style="color:var(--dark-blue); font-weight:600;">EKONOMI</p>
             <hr style="margin-top:20px; border:0; border-top:1px solid #eee;">
         </div>
         <label>Pilih Kelas</label>
@@ -126,7 +129,7 @@
         </select>
         <label>Password</label>
         <div class="pass-wrapper">
-            <input type="password" id="pass" placeholder="Password Siswa">
+            <input type="password" id="pass" placeholder="Ketik Password Anda">
             <span class="toggle-password" onclick="intipPass()">LIHAT</span>
         </div>
         <button onclick="mulai()">Masuk Ujian</button>
@@ -139,7 +142,7 @@
         </div>
         <div class="timer-box" id="timer">Waktu Tersisa: --:--</div>
         <div style="display:flex; justify-content:space-between; font-size:13px; color:#636e72; font-weight:600">
-            <span>Progress</span>
+            <span>Progress Pengerjaan</span>
             <span>Soal <span id="idx">1</span></span>
         </div>
         <div class="bar"><div id="progress"></div></div>
@@ -149,9 +152,9 @@
     </div>
 
     <div id="box-selesai" style="display:none; text-align:center;">
-        <h2 style="color:var(--primary-blue); margin-bottom:10px;">✔ UJIAN SELESAI</h2>
-        <p style="color:#636e72; margin-bottom:25px;">Jawaban Anda telah tersimpan.</p>
-        <button onclick="logout()">Kembali ke Halaman Login</button>
+        <h2 style="color:var(--dark-blue); margin-bottom:10px;">✔ UJIAN SELESAI</h2>
+        <p style="color:#636e72; margin-bottom:25px;">Jawaban Anda telah aman tersimpan.</p>
+        <button onclick="logout()">Kembali ke Login</button>
     </div>
 </div>
 
@@ -166,10 +169,11 @@
 
     let dataSoal = []; let curIdx = 0; let currentUser = ""; let currentKelas = ""; let timerInterval;
 
-    // --- PROTEKSI & KEAMANAN ---
+    // --- PROTEKSI & LOGIKA LIHAT PASSWORD ---
     window.history.pushState(null, "", window.location.href);
     window.onpopstate = function() { window.history.pushState(null, "", window.location.href); };
     document.addEventListener('contextmenu', e => e.preventDefault());
+    
     document.addEventListener("visibilitychange", function() {
         const card = document.querySelector('.card');
         if (document.hidden) card.classList.add('blur-mode');
@@ -234,12 +238,12 @@
         if(dataSiswa && p === dataSiswa.pass) {
             loading.style.display = "flex";
             try {
-                // LOGIKA OTOMATIS SOAL BERDASARKAN KELAS
+                // LOGIKA OTOMATIS PILIH SOAL BERDASARKAN KELAS
                 const nomorKelas = k.split('-')[1]; 
                 const fileSoal = `soal${nomorKelas}.json`;
 
                 const rSoal = await fetch(`${fileSoal}?v=${Date.now()}`);
-                if (!rSoal.ok) throw new Error("File " + fileSoal + " tidak ditemukan!");
+                if (!rSoal.ok) throw new Error("File " + fileSoal + " tidak ada!");
                 const soalAsli = await rSoal.json();
 
                 const rStatus = await fetch(`${URL_APP}?nama=${encodeURIComponent(u)}&t=${Date.now()}`);
@@ -247,7 +251,7 @@
 
                 if(s.jumlahDikerjakan >= soalAsli.length) {
                     loading.style.display = "none";
-                    alert("AKSES DITOLAK: Anda sudah menyelesaikan ujian!");
+                    alert("Akses Ditolak: Anda sudah menyelesaikan semua soal!");
                     logout(); return;
                 }
 
@@ -273,9 +277,9 @@
                 loading.style.display = "none";
             } catch(e) { 
                 loading.style.display = "none";
-                alert("Kesalahan Sistem: " + e.message); 
+                alert("Kesalahan Server: " + e.message); 
             }
-        } else { if(!isAuto) alert("Login Gagal: Periksa Nama atau Password!"); }
+        } else { if(!isAuto) alert("Nama atau Password Salah!"); }
     }
 
     function startTimer() {
@@ -317,7 +321,7 @@
         const s = dataSoal[curIdx];
         document.getElementById('idx').innerText = (curIdx + 1) + "/" + dataSoal.length;
         document.getElementById('progress').style.width = (curIdx / dataSoal.length * 100) + "%";
-        let h = `<h3>${s.pertanyaan}</h3>`;
+        let h = `<h3 style="margin-bottom:15px;">${s.pertanyaan}</h3>`;
         if (["pilihan-ganda", "pg-kompleks"].includes(s.tipe)) {
             const opsiAcak = shuffle([...s.opsi]); 
             opsiAcak.forEach(o => {
@@ -338,7 +342,7 @@
                       </select></div>`;
             });
         } else if (s.tipe === "essay") {
-            h += `<textarea id="j-essay" rows="5" placeholder="Ketik jawaban Anda..."></textarea>`;
+            h += `<textarea id="j-essay" rows="5" placeholder="Ketik jawaban lengkap Anda..."></textarea>`;
         }
         document.getElementById('soal-area').innerHTML = h;
     }
@@ -350,18 +354,18 @@
 
         if (s.tipe === "essay") {
             jwb = document.getElementById('j-essay').value.trim();
-            if(!jwb) return alert("Isi jawaban!"); stat = "Perlu Koreksi";
+            if(!jwb) return alert("Jawaban tidak boleh kosong!"); stat = "Perlu Koreksi";
         } else if (s.tipe === "menjodohkan") {
             let res = {}; let count = 0;
             document.querySelectorAll('select[name="j-match"]').forEach(sel => {
                 if(sel.value) { res[sel.dataset.key] = sel.value; count++; }
             });
-            if(count < s.kiri.length) return alert("Jodohkan semua!");
+            if(count < s.kiri.length) return alert("Mohon jodohkan semua pilihan!");
             jwb = JSON.stringify(res);
             stat = (jwb === JSON.stringify(s.kunci)) ? "Benar" : "Salah";
         } else {
             let p = []; document.querySelectorAll('input[name="j"]:checked').forEach(i => p.push(i.value));
-            if(p.length === 0) return alert("Pilih jawaban!");
+            if(p.length === 0) return alert("Pilih salah satu jawaban!");
             jwb = p.sort().join(",");
             const knc = Array.isArray(s.kunci) ? s.kunci.sort().join(",") : s.kunci;
             stat = (jwb === knc) ? "Benar" : "Salah";
@@ -373,7 +377,7 @@
             curIdx++;
             if(curIdx < dataSoal.length) { tampil(); btnNext.disabled = false; }
             else { finishUjian(); }
-        } catch (e) { alert("Gagal mengirim."); btnNext.disabled = false; }
+        } catch (e) { alert("Gagal mengirim jawaban. Cek koneksi."); btnNext.disabled = false; }
     }
 </script>
 </body>
