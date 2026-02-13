@@ -8,9 +8,10 @@
     <script src="siswa.js"></script>
     <style>
         :root {
-            --primary-green: #2ecc71;
-            --dark-green: #27ae60;
-            --bg-gradient: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            /* Tema Biru Muda Baru */
+            --primary-blue: #3498db;
+            --dark-blue: #2980b9;
+            --bg-gradient: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
             --text-dark: #2d3436;
         }
 
@@ -57,7 +58,7 @@
         .pass-wrapper { position: relative; width: 100%; }
         .toggle-password {
             position: absolute; right: 15px; top: 15px; cursor: pointer;
-            color: var(--dark-green); font-size: 11px; font-weight: 700;
+            color: var(--dark-blue); font-size: 11px; font-weight: 700;
         }
 
         .timer-box { 
@@ -68,12 +69,12 @@
         .info-siswa { background: #f1f2f6; padding: 10px; border-radius: 10px; margin-bottom: 15px; font-size: 13px; line-height: 1.6; text-align: left; }
 
         button {
-            width: 100%; padding: 15px; background-color: var(--primary-green);
+            width: 100%; padding: 15px; background-color: var(--primary-blue);
             color: white; border: none; border-radius: 10px; font-weight: 700;
             cursor: pointer; transition: 0.3s; text-transform: uppercase;
         }
 
-        button:hover { background-color: var(--dark-green); }
+        button:hover { background-color: var(--dark-blue); }
         button:disabled { background-color: #ccc; cursor: not-allowed; }
         .btn-logout { background-color: #fab1a0; color: #d63031; margin-top: 10px; font-size: 12px; padding: 10px; }
 
@@ -81,10 +82,10 @@
             display: block; padding: 15px; margin: 10px 0; border: 2px solid #f1f2f6;
             border-radius: 12px; cursor: pointer; text-align: left;
         }
-        .opsi-item:has(input:checked) { border-color: var(--primary-green); background-color: #f0fff4; }
+        .opsi-item:has(input:checked) { border-color: var(--primary-blue); background-color: #ebf8ff; }
 
         .bar { width: 100%; height: 8px; background: #eee; border-radius: 10px; margin: 15px 0; overflow: hidden; }
-        #progress { height: 100%; background: var(--primary-green); width: 0%; transition: 0.4s; }
+        #progress { height: 100%; background: var(--primary-blue); width: 0%; transition: 0.4s; }
         
         .footer {
             width: 100%; max-width: 500px; text-align: center; color: white;
@@ -112,7 +113,7 @@
         <div class="header-container">
             <img src="logo.png" class="logo-img" alt="Logo" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Logo_Tut_Wuri_Handayani.png/100px-Logo_Tut_Wuri_Handayani.png'">
             <h1 class="title-uts">Ujian Tengah Semester</h1>
-            <p style="color:var(--dark-green); font-weight:600;">EKONOMI</p>
+            <p style="color:var(--dark-blue); font-weight:600;">INFORMATIKA</p>
             <hr style="margin-top:20px; border:0; border-top:1px solid #eee;">
         </div>
         <label>Pilih Kelas</label>
@@ -148,7 +149,7 @@
     </div>
 
     <div id="box-selesai" style="display:none; text-align:center;">
-        <h2 style="color:var(--primary-green); margin-bottom:10px;">✔ UJIAN SELESAI</h2>
+        <h2 style="color:var(--primary-blue); margin-bottom:10px;">✔ UJIAN SELESAI</h2>
         <p style="color:#636e72; margin-bottom:25px;">Jawaban Anda telah tersimpan.</p>
         <button onclick="logout()">Kembali ke Halaman Login</button>
     </div>
@@ -160,12 +161,12 @@
 </footer>
 
 <script>
-    const URL_APP ="https://script.google.com/macros/s/AKfycbyr9hFlZ4UyKh2W4-5YWY_78Il6ZOgD7RlcbP9jxwMQyx_Bn25xORhRE_qnDFElP-3b5w/exec";
+    const URL_APP = "https://script.google.com/macros/s/AKfycbyr9hFlZ4UyKh2W4-5YWY_78Il6ZOgD7RlcbP9jxwMQyx_Bn25xORhRE_qnDFElP-3b5w/exec";
     const DURASI_UJIAN = 60; 
 
     let dataSoal = []; let curIdx = 0; let currentUser = ""; let currentKelas = ""; let timerInterval;
 
-    // --- PROTEKSI KERAS ---
+    // --- PROTEKSI & KEAMANAN ---
     window.history.pushState(null, "", window.location.href);
     window.onpopstate = function() { window.history.pushState(null, "", window.location.href); };
     document.addEventListener('contextmenu', e => e.preventDefault());
@@ -222,69 +223,59 @@
         });
     }
 
-   async function mulai(isAuto = false) {
-    const u = document.getElementById('sel-nama').value;
-    const k = document.getElementById('sel-kelas').value;
-    const p = document.getElementById('pass').value;
-    const loading = document.getElementById('loading-overlay');
+    async function mulai(isAuto = false) {
+        const u = document.getElementById('sel-nama').value;
+        const k = document.getElementById('sel-kelas').value;
+        const p = document.getElementById('pass').value;
+        const loading = document.getElementById('loading-overlay');
 
-    // MENCARI DATA SISWA DI DATABASE LOKAL
-    const dataSiswa = SISWA_BARU.find(s => s.nama === u && s.kelas === k);
+        const dataSiswa = SISWA_BARU.find(s => s.nama === u && s.kelas === k);
 
-    if(dataSiswa && p === dataSiswa.pass) {
-        loading.style.display = "flex";
-        try {
-            // --- LOGIKA OTOMATIS PILIH FILE SOAL ---
-            // Mengambil angka terakhir dari string kelas (Contoh: "KELAS 10-1" mengambil "1")
-            const nomorKelas = k.split('-')[1]; 
-            const fileSoal = `soal${nomorKelas}.json`;
+        if(dataSiswa && p === dataSiswa.pass) {
+            loading.style.display = "flex";
+            try {
+                // LOGIKA OTOMATIS SOAL BERDASARKAN KELAS
+                const nomorKelas = k.split('-')[1]; 
+                const fileSoal = `soal${nomorKelas}.json`;
 
-            // Fetch soal berdasarkan file yang ditentukan di atas
-            const rSoal = await fetch(`${fileSoal}?v=${Date.now()}`);
-            if (!rSoal.ok) throw new Error("File soal tidak ditemukan");
-            
-            const soalAsli = await rSoal.json();
-            // --- AKHIR LOGIKA OTOMATIS ---
+                const rSoal = await fetch(`${fileSoal}?v=${Date.now()}`);
+                if (!rSoal.ok) throw new Error("File " + fileSoal + " tidak ditemukan!");
+                const soalAsli = await rSoal.json();
 
-            // Cek status pengerjaan ke Google Sheets
-            const rStatus = await fetch(`${URL_APP}?nama=${encodeURIComponent(u)}&t=${Date.now()}`);
-            const s = await rStatus.json();
+                const rStatus = await fetch(`${URL_APP}?nama=${encodeURIComponent(u)}&t=${Date.now()}`);
+                const s = await rStatus.json();
 
-            if(s.jumlahDikerjakan >= soalAsli.length) {
+                if(s.jumlahDikerjakan >= soalAsli.length) {
+                    loading.style.display = "none";
+                    alert("AKSES DITOLAK: Anda sudah menyelesaikan ujian!");
+                    logout(); return;
+                }
+
+                if (s.jumlahDikerjakan === 0 && !localStorage.getItem('urutan_soal')) {
+                    dataSoal = shuffle(soalAsli);
+                    localStorage.setItem('urutan_soal', JSON.stringify(dataSoal));
+                } else {
+                    const savedOrder = localStorage.getItem('urutan_soal');
+                    dataSoal = savedOrder ? JSON.parse(savedOrder) : soalAsli;
+                }
+
+                currentUser = u; currentKelas = k;
+                localStorage.setItem('active_student', u);
+                localStorage.setItem('active_kelas', k);
+                curIdx = s.jumlahDikerjakan;
+
+                document.getElementById('box-login').style.display = 'none';
+                document.getElementById('box-kuis').style.display = 'block';
+                document.getElementById('txt-nama').innerText = u;
+                document.getElementById('txt-kelas').innerText = k;
+                
+                tampil(); startTimer();
                 loading.style.display = "none";
-                alert("AKSES DITOLAK: Anda sudah menyelesaikan ujian!");
-                logout();
-                return;
+            } catch(e) { 
+                loading.style.display = "none";
+                alert("Kesalahan Sistem: " + e.message); 
             }
-
-            // Logika Acak Soal (Tetap dipertahankan agar urutan antar siswa berbeda)
-            if (s.jumlahDikerjakan === 0 && !localStorage.getItem('urutan_soal')) {
-                dataSoal = shuffle(soalAsli);
-                localStorage.setItem('urutan_soal', JSON.stringify(dataSoal));
-            } else {
-                const savedOrder = localStorage.getItem('urutan_soal');
-                dataSoal = savedOrder ? JSON.parse(savedOrder) : soalAsli;
-            }
-
-            currentUser = u;
-            currentKelas = k;
-            localStorage.setItem('active_student', u);
-            localStorage.setItem('active_kelas', k);
-            curIdx = s.jumlahDikerjakan;
-
-            document.getElementById('box-login').style.display = 'none';
-            document.getElementById('box-kuis').style.display = 'block';
-            document.getElementById('txt-nama').innerText = u;
-            document.getElementById('txt-kelas').innerText = k;
-            
-            tampil();
-            startTimer();
-            loading.style.display = "none";
-        } catch(e) { 
-            loading.style.display = "none";
-            alert("Gagal memuat soal: " + e.message); 
-        }
-    } else { if(!isAuto) alert("Nama atau Password salah!"); }
+        } else { if(!isAuto) alert("Login Gagal: Periksa Nama atau Password!"); }
     }
 
     function startTimer() {
@@ -387,5 +378,3 @@
 </script>
 </body>
 </html>
-
-
