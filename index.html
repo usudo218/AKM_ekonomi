@@ -8,9 +8,11 @@
     <script src="siswa.js"></script>
     <style>
         :root { 
-            --primary-green: #2ecc71; 
-            --dark-green: #27ae60; 
-            --bg-gradient: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%); 
+            /* TEMA WARNA BIRU LANGIT */
+            --primary-blue: #3498db; 
+            --dark-blue: #2980b9; 
+            --light-blue: #87CEEB;
+            --bg-gradient: linear-gradient(135deg, #87CEEB 0%, #3498db 100%); 
             --text-dark: #2d3436;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -33,44 +35,46 @@
             max-width: 500px; 
             padding: 40px 30px; 
             border-radius: 20px; 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15); 
             text-align: center;
         }
 
         .logo-container { margin-bottom: 20px; }
         .logo-img { width: 100px; height: auto; margin-bottom: 10px; }
         .title-app { font-size: 1.4rem; font-weight: 700; color: var(--text-dark); margin-bottom: 5px; text-transform: uppercase; }
-        .subtitle-app { font-size: 0.9rem; color: var(--dark-green); font-weight: 600; margin-bottom: 25px; }
+        .subtitle-app { font-size: 0.9rem; color: var(--dark-blue); font-weight: 600; margin-bottom: 25px; }
 
         /* PASSWORD WRAPPER */
         .pass-wrapper { position: relative; width: 100%; margin-bottom: 25px; }
         .toggle-password {
             position: absolute; right: 15px; top: 14px; cursor: pointer;
-            color: var(--dark-green); font-size: 11px; font-weight: 800;
-            background: #e8f5e9; padding: 4px 8px; border-radius: 6px;
+            color: var(--dark-blue); font-size: 11px; font-weight: 800;
+            background: #e1f5fe; padding: 4px 8px; border-radius: 6px;
         }
 
         input, select { width: 100%; padding: 14px; margin-bottom: 15px; border-radius: 10px; border: 1px solid #ddd; font-family: inherit; font-size: 14px; outline: none; }
-        .pass-input { margin-bottom: 0; } /* Reset margin karena sudah dibungkus wrapper */
+        .pass-input { margin-bottom: 0; } 
 
-        .info-bar { background: #f8faff; padding: 15px; border-radius: 12px; border-left: 5px solid var(--primary-green); margin-bottom: 15px; font-size: 13px; font-weight: 700; display: flex; justify-content: space-between; }
+        .info-bar { background: #f0f8ff; padding: 15px; border-radius: 12px; border-left: 5px solid var(--primary-blue); margin-bottom: 15px; font-size: 13px; font-weight: 700; display: flex; justify-content: space-between; color: var(--dark-blue); }
         .progress-container { width: 100%; background: #edf2f7; height: 10px; border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
-        #progress-fill { height: 100%; background: var(--primary-green); width: 0%; transition: 0.3s; }
+        #progress-fill { height: 100%; background: var(--primary-blue); width: 0%; transition: 0.3s; }
         .timer-box { background: #fff9db; color: #e67e22; padding: 10px; border-radius: 12px; text-align: center; font-weight: 700; margin-bottom: 20px; border: 1px solid #ffec99; }
         
         .opsi-label { display: flex; align-items: center; padding: 15px; margin: 10px 0; border: 2px solid #e2e8f0; border-radius: 12px; cursor: pointer; transition: 0.2s; background: #fff; text-align: left; }
+        .opsi-label:hover { border-color: var(--light-blue); }
         .opsi-label input { display: none; }
         .checkmark { height: 20px; width: 20px; border: 2px solid #cbd5e0; margin-right: 15px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
         .radio-mark { border-radius: 50%; }
         .check-mark { border-radius: 4px; }
-        input:checked + .checkmark { background: var(--primary-green); border-color: var(--primary-green); }
+        input:checked + .checkmark { background: var(--primary-blue); border-color: var(--primary-blue); }
         input:checked + .checkmark::after { content: "✓"; color: white; font-size: 12px; font-weight: bold; }
 
-        .btn-utama { width: 100%; padding: 16px; background: var(--primary-green); color: white; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
+        .btn-utama { width: 100%; padding: 16px; background: var(--primary-blue); color: white; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
+        .btn-utama:hover { background: var(--dark-blue); box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3); }
         
         .footer { margin-top: 25px; color: white; font-size: 12px; text-align: center; line-height: 1.6; opacity: 0.9; }
 
-        #loading-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(46, 204, 113, 0.95); display: none; flex-direction: column; justify-content: center; align-items: center; z-index: 100; }
+        #loading-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(41, 128, 185, 0.9); display: none; flex-direction: column; justify-content: center; align-items: center; z-index: 100; }
         @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
@@ -117,7 +121,7 @@
 
     <div id="box-selesai" style="display:none; text-align:center;">
         <div style="font-size: 60px; margin-bottom: 10px;">✅</div>
-        <h2 style="color: var(--dark-green);">UJIAN SELESAI</h2>
+        <h2 style="color: var(--dark-blue);">UJIAN SELESAI</h2>
         <p style="margin-bottom: 25px;">Jawaban Anda telah berhasil diunggah secara aman ke server.</p>
         <button class="btn-utama" onclick="logout()">Keluar Aplikasi</button>
     </div>
@@ -133,7 +137,6 @@
     let dataSoal = []; let curIdx = 0; let currentUser = ""; let currentKelas = "";
     let sisaWaktu = 3600; let timerInterval;
 
-    // FUNGSI LIHAT PASSWORD
     function intipPass() {
         const p = document.getElementById('pass');
         const t = document.querySelector('.toggle-password');
@@ -159,21 +162,26 @@
             document.getElementById('txt-nama-display').innerText = currentUser;
             tampil(); timerInterval = setInterval(updateTimer, 1000);
         }
-        const kls = [...new Set(SISWA_BARU.map(s => s.kelas))].sort();
-        kls.forEach(k => {
-            let o = document.createElement('option'); o.value = k; o.text = k;
-            document.getElementById('sel-kelas').appendChild(o);
-        });
+        
+        if (typeof SISWA_BARU !== 'undefined') {
+            const kls = [...new Set(SISWA_BARU.map(s => s.kelas))].sort();
+            kls.forEach(k => {
+                let o = document.createElement('option'); o.value = k; o.text = k;
+                document.getElementById('sel-kelas').appendChild(o);
+            });
+        }
     };
 
     function updateDaftarNama() {
         const k = document.getElementById('sel-kelas').value;
         const sel = document.getElementById('sel-nama');
         sel.innerHTML = '<option value="">-- Pilih Nama --</option>';
-        SISWA_BARU.filter(s => s.kelas === k).sort((a,b)=>a.nama.localeCompare(b.nama)).forEach(s => {
-            let o = document.createElement('option'); o.value = s.nama; o.text = s.nama;
-            sel.appendChild(o);
-        });
+        if (typeof SISWA_BARU !== 'undefined') {
+            SISWA_BARU.filter(s => s.kelas === k).sort((a,b)=>a.nama.localeCompare(b.nama)).forEach(s => {
+                let o = document.createElement('option'); o.value = s.nama; o.text = s.nama;
+                sel.appendChild(o);
+            });
+        }
     }
 
     function shuffle(array) { return array.sort(() => Math.random() - 0.5); }
@@ -182,8 +190,11 @@
         const u = document.getElementById('sel-nama').value;
         const p = document.getElementById('pass').value;
         const k = document.getElementById('sel-kelas').value;
+        
+        if(!u || !p) return alert("Pilih Nama dan Isi Password!");
+        
         const s = SISWA_BARU.find(x => x.nama === u && x.pass === p);
-        if(!s) return alert("Login Gagal! Password mungkin salah (Perhatikan Huruf Besar/Kecil).");
+        if(!s) return alert("Login Gagal! Password mungkin salah.");
 
         document.getElementById('loading-overlay').style.display = 'flex';
         try {
@@ -213,7 +224,7 @@
             tampil(); timerInterval = setInterval(updateTimer, 1000);
             document.getElementById('loading-overlay').style.display = 'none';
         } catch(e) { 
-            alert("Koneksi gagal."); 
+            alert("Koneksi gagal atau file soal.json tidak ditemukan."); 
             document.getElementById('loading-overlay').style.display = 'none'; 
         }
     }
@@ -230,7 +241,7 @@
         } else if(s.tipe === "pg-kompleks") {
             s.opsi.forEach(o => { h += `<label class="opsi-label"><input type="checkbox" name="j" value="${o}"><span class="checkmark check-mark"></span><span>${o}</span></label>`; });
         } else if(s.tipe === "menjodohkan") {
-            s.kiri.forEach(k => { h += `<div style="margin-bottom:10px; display:flex; justify-content:space-between; align-items:center; background:#f8f9fa; padding:10px; border-radius:8px;"><span>${k}</span><select class="match-sel" data-kiri="${k}" style="padding:5px; width:55%; margin:0;"><option value="">-- Pilih --</option>${s.kanan.map(kn => `<option value="${kn}">${kn}</option>`).join('')}</select></div>`; });
+            s.kiri.forEach(k => { h += `<div style="margin-bottom:10px; display:flex; justify-content:space-between; align-items:center; background:#f0f7ff; padding:10px; border-radius:8px; border:1px solid #d1e9ff;"><span>${k}</span><select class="match-sel" data-kiri="${k}" style="padding:5px; width:55%; margin:0;"><option value="">-- Pilih --</option>${s.kanan.map(kn => `<option value="${kn}">${kn}</option>`).join('')}</select></div>`; });
         }
         document.getElementById('soal-area').innerHTML = h;
     }
@@ -249,7 +260,7 @@
         } else if(s.tipe === "menjodohkan") {
             let res = {}; let full = true;
             document.querySelectorAll('.match-sel').forEach(sl => { if(!sl.value) full = false; res[sl.dataset.kiri] = sl.value; });
-            if(!full) return alert("Lengkapi perjodohan!");
+            if(!full) return alert("Lengkapi semua pasangan!");
             jawaban = JSON.stringify(res); stat = (jawaban === JSON.stringify(s.kunci)) ? "Benar" : "Salah";
         }
         let ans = JSON.parse(localStorage.getItem(`ans_${currentUser}`) || "[]");
@@ -266,7 +277,7 @@
             localStorage.clear();
             document.getElementById('box-kuis').style.display = 'none';
             document.getElementById('box-selesai').style.display = 'block';
-        } catch(e) { alert("Gagal kirim."); }
+        } catch(e) { alert("Gagal mengirim jawaban ke server."); }
         document.getElementById('loading-overlay').style.display = 'none';
     }
 
@@ -282,4 +293,3 @@
 </script>
 </body>
 </html>
-
