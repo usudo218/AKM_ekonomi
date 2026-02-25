@@ -10,75 +10,129 @@
         :root { --primary: #27ae60; --dark: #2c3e50; --light: #f4f7f6; --aksen: #4f46e5; }
         body { font-family: 'Inter', sans-serif; background: var(--light); padding: 20px; }
         .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); max-width: 1100px; margin: auto; }
-        .nav-tabs { display: flex; gap: 10px; margin-bottom: 20px; background: #eee; padding: 5px; border-radius: 10px; }
-        .tab-btn { flex: 1; padding: 12px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; background: transparent; }
-        .tab-btn.active { background: white; color: var(--aksen); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .btn { padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; color: white; }
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        th { background: #f8f9fa; color: #636e72; padding: 12px; text-align: left; border-bottom: 2px solid #eee; font-size: 13px; }
-        td { padding: 12px; border-bottom: 1px solid #eee; font-size: 14px; }
-        .badge { padding: 4px 8px; border-radius: 5px; font-size: 11px; font-weight: bold; text-transform: uppercase; }
-        .bg-success { background: #d4edda; color: #155724; }
-        .bg-danger { background: #f8d7da; color: #721c24; }
-        mark { background: #fff9db; padding: 2px 5px; border-radius: 4px; font-weight: bold; }
+        .header-admin { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+        .nav-tabs { display: flex; gap: 10px; background: #eee; padding: 5px; border-radius: 10px; }
+        .tab-btn { padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.3s; }
+        .tab-btn.active { background: white; color: var(--aksen); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        
+        /* Gaya Dropdown Sort */
+        .controls { display: flex; gap: 10px; align-items: center; }
+        select { padding: 10px; border-radius: 8px; border: 1px solid #ddd; outline: none; font-family: inherit; }
+        
+        .btn-export { background: var(--primary); color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 14px; }
+        th { background: #f8f9fa; text-align: left; padding: 12px; border-bottom: 2px solid #eee; }
+        td { padding: 12px; border-bottom: 1px solid #eee; }
+        .bg-success { background: #d4edda; color: #155724; padding: 4px 8px; border-radius: 4px; font-size: 12px; }
+        .bg-danger { background: #f8d7da; color: #721c24; padding: 4px 8px; border-radius: 4px; font-size: 12px; }
     </style>
 </head>
 <body>
 
 <div class="card">
-    <h2>Monitoring Guru - AKM SMAN 1 Muncar</h2>
-    <p>EKONOMI</p>
-    <div class="nav-tabs">
-        <button id="btn-rekap" class="tab-btn active" onclick="gantiTab('rekap')">Rekap Nilai Siswa</button>
-        <button id="btn-detail" class="tab-btn" onclick="gantiTab('detail')">Log Detail</button>
+    <div class="header-admin">
+        <div>
+            <h2 style="color: var(--dark);">Panel Administrator</h2>
+            <p style="font-size: 12px; color: #7f8c8d;">Data Ujian SMAN 1 Muncar</p>
+        </div>
+        <div class="controls">
+            <div class="nav-tabs">
+                <button class="tab-btn active" id="btn-rekap" onclick="gantiTab('rekap')">Rekap Nilai</button>
+                <button class="tab-btn" id="btn-detail" onclick="gantiTab('detail')">Log Detail</button>
+            </div>
+            <select id="sort-by" onchange="tampilkanTabel()">
+                <option value="nama">Urut: Nama</option>
+                <option value="kelas">Urut: Kelas</option>
+            </select>
+            <button class="btn-export" onclick="exportExcel()">Export Excel</button>
+        </div>
     </div>
-    <div style="margin-bottom: 20px; display:flex; gap:10px;">
-        <button class="btn" style="background: var(--primary);" onclick="muatData()">Refresh Data</button>
-        <button class="btn" style="background: var(--dark);" onclick="exportExcel()">Unduh Excel</button>
-    </div>
+
     <div style="overflow-x: auto;">
         <table>
             <thead id="head-table"></thead>
-            <tbody id="body-table"><tr><td colspan="6" style="text-align:center; padding:50px;">Memuat...</td></tr></tbody>
+            <tbody id="body-table"></tbody>
         </table>
     </div>
 </div>
 
 <script>
-    const URL_APP = "https://script.google.com/macros/s/AKfycbxYPrRnb7veMCfURpmnP4oDeKOTygyoFrAyEB4g2uBTjQAGynpc-LV9bMMOPrBvQohoNQ/exec"; // Samakan dengan URL di index.html
-    let mode = "rekap"; let currentData = [];
+    const URL_APP = "https://script.google.com/macros/s/AKfycbxYPrRnb7veMCfURpmnP4oDeKOTygyoFrAyEB4g2uBTjQAGynpc-LV9bMMOPrBvQohoNQ/exec"; 
+    let currentData = [];
+    let mode = "rekap";
+
+    window.onload = muatData;
 
     async function muatData() {
-        const tbody = document.getElementById('body-table');
-        tbody.innerHTML = "<tr><td colspan='6' style='text-align:center; padding:50px;'>⏳ Menghubungkan...</td></tr>";
+        document.getElementById('body-table').innerHTML = "<tr><td colspan='6' style='text-align:center'>Memuat data...</td></tr>";
         try {
-            const resp = await fetch(`${URL_APP}?aksi=${mode === 'rekap' ? 'rekapNilai' : 'ambilSemua'}`);
+            const aksi = mode === "rekap" ? "rekapNilai" : "ambilSemua";
+            const resp = await fetch(`${URL_APP}?aksi=${aksi}`);
             currentData = await resp.json();
-            renderTable();
-        } catch (e) { tbody.innerHTML = "<tr><td colspan='6' style='text-align:center; color:red;'>Gagal Koneksi.</td></tr>"; }
+            tampilkanTabel();
+        } catch (e) {
+            alert("Gagal memuat data dari server.");
+        }
     }
 
-    function renderTable() {
+    function tampilkanTabel() {
+        const sortBy = document.getElementById('sort-by').value;
         const thead = document.getElementById('head-table');
         const tbody = document.getElementById('body-table');
+        
+        // Logika Sorting
+        let sortedData = [...currentData].sort((a, b) => {
+            if (sortBy === "nama") return a.nama.localeCompare(b.nama);
+            if (sortBy === "kelas") return a.kelas.localeCompare(b.kelas);
+            return 0;
+        });
+
         tbody.innerHTML = "";
         if (mode === "rekap") {
             thead.innerHTML = "<tr><th>Kelas</th><th>Nama Siswa</th><th>Benar</th><th>Salah</th><th>Total</th><th>Skor</th></tr>";
-            currentData.forEach(s => {
-                tbody.innerHTML += `<tr><td>${s.kelas}</td><td><b>${s.nama}</b></td><td style="color:green"><b>${s.benar}</b></td><td style="color:red"><b>${s.salah}</b></td><td>${s.total}</td><td><mark>${s.skor}</mark></td></tr>`;
+            sortedData.forEach(s => {
+                tbody.innerHTML += `<tr>
+                    <td>${s.kelas}</td>
+                    <td><b>${s.nama}</b></td>
+                    <td style="color:green"><b>${s.benar}</b></td>
+                    <td style="color:red"><b>${s.salah}</b></td>
+                    <td>${s.total}</td>
+                    <td><mark>${s.skor}</mark></td>
+                </tr>`;
             });
         } else {
             thead.innerHTML = "<tr><th>Waktu</th><th>Kelas</th><th>Nama</th><th>ID</th><th>Jawaban</th><th>Status</th></tr>";
-            [...currentData].reverse().forEach(row => {
+            // Jika mode detail, biasanya data waktu paling baru di atas, 
+            // tapi jika user pilih sort nama/kelas, kita ikuti pilihan tersebut.
+            sortedData.forEach(row => {
                 const cls = row.status === "Benar" ? "bg-success" : "bg-danger";
-                tbody.innerHTML += `<tr><td>${row.timestamp}</td><td>${row.kelas}</td><td><b>${row.nama}</b></td><td>${row.id_soal}</td><td>${row.jawaban}</td><td><span class="badge ${cls}">${row.status}</span></td></tr>`;
+                tbody.innerHTML += `<tr>
+                    <td>${row.timestamp}</td>
+                    <td>${row.kelas}</td>
+                    <td><b>${row.nama}</b></td>
+                    <td>${row.id_soal}</td>
+                    <td>${row.jawaban}</td>
+                    <td><span class="badge ${cls}">${row.status}</span></td>
+                </tr>`;
             });
         }
     }
 
-    function gantiTab(m) { mode = m; document.getElementById('btn-rekap').classList.toggle('active', m === 'rekap'); document.getElementById('btn-detail').classList.toggle('active', m === 'detail'); muatData(); }
-    function exportExcel() { const ws = XLSX.utils.json_to_sheet(currentData); const wb = XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb, ws, "Hasil"); XLSX.writeFile(wb, `Rekap_${mode}.xlsx`); }
-    window.onload = muatData;
+    function gantiTab(m) { 
+        mode = m; 
+        document.getElementById('btn-rekap').classList.toggle('active', m === 'rekap'); 
+        document.getElementById('btn-detail').classList.toggle('active', m === 'detail'); 
+        muatData(); 
+    }
+
+    function exportExcel() { 
+        const ws = XLSX.utils.json_to_sheet(currentData); 
+        const wb = XLSX.utils.book_new(); 
+        XLSX.utils.book_append_sheet(wb, ws, "Data"); 
+        XLSX.writeFile(wb, `Rekap_AKM_${mode}.xlsx`); 
+    }
 </script>
+
 </body>
 </html>
