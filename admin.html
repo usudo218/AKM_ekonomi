@@ -7,25 +7,31 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #27ae60; --dark: #2c3e50; --light: #f4f7f6; --aksen: #4f46e5; }
+        :root { --primary: #27ae60; --dark: #2c3e50; --light: #f4f7f6; --aksen: #3498db; }
         body { font-family: 'Inter', sans-serif; background: var(--light); padding: 20px; }
-        .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); max-width: 1100px; margin: auto; }
-        .header-admin { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+        .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); max-width: 1200px; margin: auto; }
+        
+        .header-admin { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 15px; }
         .nav-tabs { display: flex; gap: 10px; background: #eee; padding: 5px; border-radius: 10px; }
         .tab-btn { padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.3s; }
         .tab-btn.active { background: white; color: var(--aksen); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
         
-        /* Gaya Dropdown Sort */
-        .controls { display: flex; gap: 10px; align-items: center; }
-        select { padding: 10px; border-radius: 8px; border: 1px solid #ddd; outline: none; font-family: inherit; }
+        /* Filter Controls */
+        .filter-group { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+        .filter-group select, .filter-group input { padding: 10px; border-radius: 8px; border: 1px solid #ddd; outline: none; font-family: inherit; }
+        .filter-group input { width: 200px; }
         
-        .btn-export { background: var(--primary); color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; }
+        .btn-export { background: var(--primary); color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; transition: 0.3s; }
+        .btn-export:hover { background: #219150; }
         
         table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 14px; }
-        th { background: #f8f9fa; text-align: left; padding: 12px; border-bottom: 2px solid #eee; }
+        th { background: #f8f9fa; text-align: left; padding: 12px; border-bottom: 2px solid #eee; position: sticky; top: 0; }
         td { padding: 12px; border-bottom: 1px solid #eee; }
-        .bg-success { background: #d4edda; color: #155724; padding: 4px 8px; border-radius: 4px; font-size: 12px; }
-        .bg-danger { background: #f8d7da; color: #721c24; padding: 4px 8px; border-radius: 4px; font-size: 12px; }
+        tr:hover { background: #fcfcfc; }
+        
+        .badge { padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; }
+        .bg-success { background: #d4edda; color: #155724; }
+        .bg-danger { background: #f8d7da; color: #721c24; }
     </style>
 </head>
 <body>
@@ -34,22 +40,27 @@
     <div class="header-admin">
         <div>
             <h2 style="color: var(--dark);">Panel Administrator</h2>
-            <p style="font-size: 12px; color: #7f8c8d;">Data Ujian SMAN 1 Muncar</p>
+            <p style="font-size: 12px; color: #7f8c8d;">Data Hasil Ujian SMAN 1 Muncar</p>
         </div>
-        <div class="controls">
-            <div class="nav-tabs">
-                <button class="tab-btn active" id="btn-rekap" onclick="gantiTab('rekap')">Rekap Nilai</button>
-                <button class="tab-btn" id="btn-detail" onclick="gantiTab('detail')">Log Detail</button>
-            </div>
-            <select id="sort-by" onchange="tampilkanTabel()">
-                <option value="nama">Urut: Nama</option>
-                <option value="kelas">Urut: Kelas</option>
-            </select>
-            <button class="btn-export" onclick="exportExcel()">Export Excel</button>
+        
+        <div class="nav-tabs">
+            <button class="tab-btn active" id="btn-rekap" onclick="gantiTab('rekap')">Rekap Nilai</button>
+            <button class="tab-btn" id="btn-detail" onclick="gantiTab('detail')">Log Detail</button>
         </div>
     </div>
 
-    <div style="overflow-x: auto;">
+    <div class="filter-group">
+        <select id="filter-kelas" onchange="tampilkanTabel()">
+            <option value="">-- Semua Kelas --</option>
+        </select>
+
+        <input type="text" id="cari-nama" placeholder="Cari Nama Siswa..." onkeyup="tampilkanTabel()">
+
+        <div style="flex-grow: 1;"></div>
+        <button class="btn-export" onclick="exportExcel()">Export Excel</button>
+    </div>
+
+    <div style="overflow-x: auto; max-height: 600px;">
         <table>
             <thead id="head-table"></thead>
             <tbody id="body-table"></tbody>
@@ -65,33 +76,54 @@
     window.onload = muatData;
 
     async function muatData() {
-        document.getElementById('body-table').innerHTML = "<tr><td colspan='6' style='text-align:center'>Memuat data...</td></tr>";
+        document.getElementById('body-table').innerHTML = "<tr><td colspan='6' style='text-align:center'>Memuat data dari server...</td></tr>";
         try {
             const aksi = mode === "rekap" ? "rekapNilai" : "ambilSemua";
             const resp = await fetch(`${URL_APP}?aksi=${aksi}`);
             currentData = await resp.json();
+            
+            updateDropdownKelas();
             tampilkanTabel();
         } catch (e) {
-            alert("Gagal memuat data dari server.");
+            alert("Koneksi ke Spreadsheet gagal.");
         }
     }
 
+    // Mengisi pilihan kelas secara otomatis dari data yang ada
+    function updateDropdownKelas() {
+        const select = document.getElementById('filter-kelas');
+        const kls = [...new Set(currentData.map(item => item.kelas))].sort();
+        
+        select.innerHTML = '<option value="">-- Semua Kelas --</option>';
+        kls.forEach(k => {
+            if(k) {
+                let o = document.createElement('option');
+                o.value = k; o.text = k;
+                select.appendChild(o);
+            }
+        });
+    }
+
     function tampilkanTabel() {
-        const sortBy = document.getElementById('sort-by').value;
+        const fKelas = document.getElementById('filter-kelas').value;
+        const fNama = document.getElementById('cari-nama').value.toLowerCase();
         const thead = document.getElementById('head-table');
         const tbody = document.getElementById('body-table');
         
-        // Logika Sorting
-        let sortedData = [...currentData].sort((a, b) => {
-            if (sortBy === "nama") return a.nama.localeCompare(b.nama);
-            if (sortBy === "kelas") return a.kelas.localeCompare(b.kelas);
-            return 0;
+        // Filter Data berdasarkan input admin
+        let filteredData = currentData.filter(item => {
+            const matchKelas = fKelas === "" || item.kelas === fKelas;
+            const matchNama = item.nama.toLowerCase().includes(fNama);
+            return matchKelas && matchNama;
         });
+
+        // Urutkan default berdasarkan nama
+        filteredData.sort((a, b) => a.nama.localeCompare(b.nama));
 
         tbody.innerHTML = "";
         if (mode === "rekap") {
             thead.innerHTML = "<tr><th>Kelas</th><th>Nama Siswa</th><th>Benar</th><th>Salah</th><th>Total</th><th>Skor</th></tr>";
-            sortedData.forEach(s => {
+            filteredData.forEach(s => {
                 tbody.innerHTML += `<tr>
                     <td>${s.kelas}</td>
                     <td><b>${s.nama}</b></td>
@@ -102,10 +134,8 @@
                 </tr>`;
             });
         } else {
-            thead.innerHTML = "<tr><th>Waktu</th><th>Kelas</th><th>Nama</th><th>ID</th><th>Jawaban</th><th>Status</th></tr>";
-            // Jika mode detail, biasanya data waktu paling baru di atas, 
-            // tapi jika user pilih sort nama/kelas, kita ikuti pilihan tersebut.
-            sortedData.forEach(row => {
+            thead.innerHTML = "<tr><th>Waktu</th><th>Kelas</th><th>Nama</th><th>ID Soal</th><th>Jawaban</th><th>Status</th></tr>";
+            filteredData.forEach(row => {
                 const cls = row.status === "Benar" ? "bg-success" : "bg-danger";
                 tbody.innerHTML += `<tr>
                     <td>${row.timestamp}</td>
@@ -116,6 +146,10 @@
                     <td><span class="badge ${cls}">${row.status}</span></td>
                 </tr>`;
             });
+        }
+        
+        if(filteredData.length === 0) {
+            tbody.innerHTML = "<tr><td colspan='6' style='text-align:center'>Data tidak ditemukan.</td></tr>";
         }
     }
 
@@ -129,8 +163,8 @@
     function exportExcel() { 
         const ws = XLSX.utils.json_to_sheet(currentData); 
         const wb = XLSX.utils.book_new(); 
-        XLSX.utils.book_append_sheet(wb, ws, "Data"); 
-        XLSX.writeFile(wb, `Rekap_AKM_${mode}.xlsx`); 
+        XLSX.utils.book_append_sheet(wb, ws, "Data Ujian"); 
+        XLSX.writeFile(wb, `Hasil_AKM_${mode}.xlsx`); 
     }
 </script>
 
