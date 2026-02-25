@@ -22,6 +22,821 @@
     "opsi": ["Harga barang itu sendiri", "Pendapatan konsumen", "Selera masyarakat", "Biaya produksi", "Harga barang substitusi"],
     "kunci": "Biaya produksi",
     "skor": 2.5
+  },
+  {
+    "id": 4,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Kurva permintaan biasanya berbentuk ....",
+    "opsi": ["Garis lurus vertikal", "Garis lurus horizontal", "Miring dari kiri bawah ke kanan atas", "Miring dari kiri atas ke kanan bawah", "Tidak beraturan"],
+    "kunci": "Miring dari kiri atas ke kanan bawah",
+    "skor": 2.5
+  },
+  {
+    "id": 5,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Jika pendapatan masyarakat meningkat dan barang tersebut merupakan barang normal, maka ....",
+    "opsi": ["Kurva permintaan bergeser ke kiri", "Kurva permintaan bergeser ke kanan", "Terjadi pergerakan sepanjang kurva", "Kurva menjadi vertikal", "Permintaan menurun"],
+    "kunci": "Kurva permintaan bergeser ke kanan",
+    "skor": 2.5
+  },
+  {
+    "id": 6,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Jika harga kopi naik, maka permintaan teh sebagai barang substitusi akan ....",
+    "opsi": ["Turun", "Tetap", "Naik", "Hilang", "Tidak terpengaruh"],
+    "kunci": "Naik",
+    "skor": 2.5
+  },
+  {
+    "id": 7,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Jika harga bensin naik, maka permintaan terhadap mobil (barang komplementer) akan ....",
+    "opsi": ["Naik", "Turun", "Tetap", "Tidak terpengaruh", "Berhenti sama sekali"],
+    "kunci": "Turun",
+    "skor": 2.5
+  },
+  {
+    "id": 8,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Penawaran adalah ....",
+    "opsi": ["Jumlah barang yang ingin dibeli konsumen", "Keinginan produsen untuk menjual barang pada berbagai tingkat harga", "Kebutuhan masyarakat", "Proses tawar-menawar", "Jumlah barang yang ada di gudang"],
+    "kunci": "Keinginan produsen untuk menjual barang pada berbagai tingkat harga",
+    "skor": 2.5
+  },
+  {
+    "id": 9,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Hukum penawaran menyatakan bahwa jika harga naik, maka ....",
+    "opsi": ["Jumlah barang yang ditawarkan akan turun", "Jumlah barang yang ditawarkan akan naik", "Jumlah barang yang ditawarkan tetap", "Permintaan akan naik", "Pasar akan tutup"],
+    "kunci": "Jumlah barang yang ditawarkan akan naik",
+    "skor": 2.5
+  },
+  {
+    "id": 10,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Kurva penawaran memiliki slope ....",
+    "opsi": ["Negatif", "Positif", "Horizontal", "Vertikal", "Nol"],
+    "kunci": "Positif",
+    "skor": 2.5
+  },
+  {
+    "id": 11,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Harga keseimbangan terjadi ketika ....",
+    "opsi": ["Permintaan lebih besar dari penawaran", "Penawaran lebih besar dari permintaan", "Jumlah permintaan sama dengan jumlah penawaran", "Harga ditetapkan pemerintah", "Tidak ada barang di pasar"],
+    "kunci": "Jumlah permintaan sama dengan jumlah penawaran",
+    "skor": 2.5
+  },
+  {
+    "id": 12,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Titik potong antara kurva permintaan dan kurva penawaran disebut ....",
+    "opsi": ["Titik laba", "Titik rugi", "Titik ekuilibrium", "Titik puncak", "Titik nadir"],
+    "kunci": "Titik ekuilibrium",
+    "skor": 2.5
+  },
+  {
+    "id": 13,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Jika di pasar terjadi kelebihan penawaran (surplus), maka harga cenderung ....",
+    "opsi": ["Naik", "Tetap", "Turun", "Tidak menentu", "Menghilang"],
+    "kunci": "Turun",
+    "skor": 2.5
+  },
+  {
+    "id": 14,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Jika di pasar terjadi kelebihan permintaan (shortage), maka harga cenderung ....",
+    "opsi": ["Turun", "Naik", "Tetap", "Sama dengan harga pokok", "Tidak berpengaruh"],
+    "kunci": "Naik",
+    "skor": 2.5
+  },
+  {
+    "id": 15,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Faktor teknologi biasanya memengaruhi ....",
+    "opsi": ["Permintaan", "Penawaran", "Selera", "Pendapatan", "Kebutuhan pokok"],
+    "kunci": "Penawaran",
+    "skor": 2.5
+  },
+  {
+    "id": 16,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Elastisitas permintaan mengukur ....",
+    "opsi": ["Perubahan jumlah barang yang ditawarkan", "Kepekaan jumlah permintaan terhadap perubahan harga", "Keuntungan produsen", "Jumlah pendapatan nasional", "Kebutuhan masyarakat"],
+    "kunci": "Kepekaan jumlah permintaan terhadap perubahan harga",
+    "skor": 2.5
+  },
+  {
+    "id": 17,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Jika nilai elastisitas permintaan (E) > 1, maka disebut ....",
+    "opsi": ["Inelastis", "Elastis uniter", "Elastis", "Inelastis sempurna", "Elastis sempurna"],
+    "kunci": "Elastis",
+    "skor": 2.5
+  },
+  {
+    "id": 18,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Contoh barang yang permintaannya bersifat inelastis adalah ....",
+    "opsi": ["Emas", "Mobil mewah", "Kebutuhan pokok seperti beras", "Barang elektronik", "Liburan ke luar negeri"],
+    "kunci": "Kebutuhan pokok seperti beras",
+    "skor": 2.5
+  },
+  {
+    "id": 19,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Pasar yang hanya terdiri dari satu penjual disebut ....",
+    "opsi": ["Pasar persaingan sempurna", "Pasar oligopoli", "Pasar monopoli", "Pasar monopolistik", "Pasar tradisional"],
+    "kunci": "Pasar monopoli",
+    "skor": 2.5
+  },
+  {
+    "id": 20,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Pasar yang dikuasai oleh beberapa penjual besar disebut ....",
+    "opsi": ["Monopoli", "Oligopoli", "Monopsoni", "Pasar bebas", "Persaingan sempurna"],
+    "kunci": "Oligopoli",
+    "skor": 2.5
+  },
+  {
+    "id": 21,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Ciri utama pasar persaingan sempurna adalah ....",
+    "opsi": ["Barang yang dijual berbeda-beda", "Hanya ada satu pembeli", "Penjual dan pembeli bebas keluar masuk pasar", "Harga ditentukan oleh penjual", "Promosi sangat besar"],
+    "kunci": "Penjual dan pembeli bebas keluar masuk pasar",
+    "skor": 2.5
+  },
+  {
+    "id": 22,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Perusahaan Listrik Negara (PLN) di Indonesia termasuk contoh ....",
+    "opsi": ["Oligopoli", "Monopoli", "Monopsoni", "Persaingan sempurna", "Pasar tradisional"],
+    "kunci": "Monopoli",
+    "skor": 2.5
+  },
+  {
+    "id": 23,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Kenaikan harga bahan baku produksi akan menyebabkan ....",
+    "opsi": ["Kurva penawaran bergeser ke kanan", "Kurva penawaran bergeser ke kiri", "Permintaan meningkat", "Harga keseimbangan turun", "Jumlah barang ditawarkan bertambah"],
+    "kunci": "Kurva penawaran bergeser ke kiri",
+    "skor": 2.5
+  },
+  {
+    "id": 24,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Pasar barang modal memperjualbelikan ....",
+    "opsi": ["Barang konsumsi", "Alat-alat produksi", "Tenaga kerja", "Uang tunai", "Tanah"],
+    "kunci": "Alat-alat produksi",
+    "skor": 2.5
+  },
+  {
+    "id": 25,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Tempat bertemunya penjual dan pembeli secara tidak langsung disebut ....",
+    "opsi": ["Pasar konkret", "Pasar abstrak", "Pasar mingguan", "Pasar harian", "Pasar tradisional"],
+    "kunci": "Pasar abstrak",
+    "skor": 2.5
+  },
+  {
+    "id": 26,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Salah satu keuntungan pasar monopoli bagi produsen adalah ....",
+    "opsi": ["Harga murah", "Menetapkan harga sendiri (price maker)", "Persaingan ketat", "Banyak pilihan barang", "Konsumen puas"],
+    "kunci": "Menetapkan harga sendiri (price maker)",
+    "skor": 2.5
+  },
+  {
+    "id": 27,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Faktor utama yang menyebabkan pergeseran kurva permintaan ke kanan adalah ....",
+    "opsi": ["Penurunan harga barang itu sendiri", "Peningkatan biaya produksi", "Peningkatan jumlah penduduk", "Pengurangan subsidi", "Kenaikan pajak"],
+    "kunci": "Peningkatan jumlah penduduk",
+    "skor": 2.5
+  },
+  {
+    "id": 28,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Pasar monopolistik memiliki ciri ....",
+    "opsi": ["Barang homogen", "Hanya ada satu penjual", "Banyak penjual dengan barang yang terdiferensiasi", "Harga ditentukan pemerintah", "Tidak ada persaingan"],
+    "kunci": "Banyak penjual dengan barang yang terdiferensiasi",
+    "skor": 2.5
+  },
+  {
+    "id": 29,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Fungsi pasar bagi produsen adalah ....",
+    "opsi": ["Tempat membeli bahan pokok", "Tempat mempromosikan barang", "Tempat menyalurkan hasil produksi", "Tempat mencari informasi", "Semua benar"],
+    "kunci": "Semua benar",
+    "skor": 2.5
+  },
+  {
+    "id": 30,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Harga yang disepakati pembeli dan penjual disebut ....",
+    "opsi": ["Harga pokok", "Harga jual", "Harga pasar", "Harga beli", "Harga eceran"],
+    "kunci": "Harga pasar",
+    "skor": 2.5
+  },
+  {
+    "id": 31,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Siapakah yang diuntungkan jika terjadi perang harga di pasar oligopoli?",
+    "opsi": ["Produsen", "Pemerintah", "Konsumen", "Distributor", "Investor"],
+    "kunci": "Konsumen",
+    "skor": 2.5
+  },
+  {
+    "id": 32,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Perdagangan online melalui aplikasi marketplace termasuk jenis pasar ....",
+    "opsi": ["Konkret", "Abstrak", "Mingguan", "Setempat", "Nasional"],
+    "kunci": "Abstrak",
+    "skor": 2.5
+  },
+  {
+    "id": 33,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Jika E = 1, maka perubahan harga sebesar 10% akan mengakibatkan perubahan permintaan sebesar ....",
+    "opsi": ["1%", "5%", "10%", "20%", "0%"],
+    "kunci": "10%",
+    "skor": 2.5
+  },
+  {
+    "id": 34,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Pasar persaingan sempurna sering dianggap pasar ideal karena ....",
+    "opsi": ["Keuntungan produsen sangat besar", "Konsumen bebas memilih", "Alokasi sumber daya efisien", "Harga sangat tinggi", "Hanya ada satu penjual"],
+    "kunci": "Alokasi sumber daya efisien",
+    "skor": 2.5
+  },
+  {
+    "id": 35,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Contoh pasar oligopoli di Indonesia adalah industri ....",
+    "opsi": ["Beras", "Semen dan provider seluler", "Listrik", "Kereta api", "Garam"],
+    "kunci": "Semen dan provider seluler",
+    "skor": 2.5
+  },
+  {
+    "id": 36,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Manakah yang merupakan barang substitusi?",
+    "opsi": ["Kompor dan gas", "Mobil dan bensin", "Pulpen dan pensil", "Sepatu dan kaus kaki", "Kopi dan gula"],
+    "kunci": "Pulpen dan pensil",
+    "skor": 2.5
+  },
+  {
+    "id": 37,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Jika harga barang X naik dan menyebabkan permintaan barang Y naik, maka X dan Y adalah ....",
+    "opsi": ["Barang komplementer", "Barang substitusi", "Barang inferior", "Barang mewah", "Barang bebas"],
+    "kunci": "Barang substitusi",
+    "skor": 2.5
+  },
+  {
+    "id": 38,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Kurva penawaran yang tegak lurus (vertikal) menunjukkan penawaran bersifat ....",
+    "opsi": ["Elastis", "Inelastis", "Inelastis sempurna", "Elastis sempurna", "Elastis uniter"],
+    "kunci": "Inelastis sempurna",
+    "skor": 2.5
+  },
+  {
+    "id": 39,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Salah satu kelemahan pasar monopoli bagi masyarakat adalah ....",
+    "opsi": ["Kualitas barang buruk", "Pilihan barang terbatas", "Harga cenderung tinggi", "Produksi berlebihan", "Banyak persaingan"],
+    "kunci": "Harga cenderung tinggi",
+    "skor": 2.5
+  },
+  {
+    "id": 40,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Peran pemerintah dalam pembentukan harga di pasar adalah melalui ....",
+    "opsi": ["Penetapan harga eceran tertinggi (HET)", "Subsidi", "Pajak", "Operasi pasar", "Semua benar"],
+    "kunci": "Semua benar",
+    "skor": 2.5
+  },
+  {
+    "id": 41,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Permintaan yang tidak disertai kemampuan membeli disebut ....",
+    "opsi": ["Permintaan efektif", "Permintaan potensial", "Permintaan absolut", "Permintaan kolektif", "Permintaan pasar"],
+    "kunci": "Permintaan absolut",
+    "skor": 2.5
+  },
+  {
+    "id": 42,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Permintaan yang didukung oleh kemampuan beli namun belum dilaksanakan disebut ....",
+    "opsi": ["Permintaan absolut", "Permintaan potensial", "Permintaan efektif", "Permintaan individu", "Permintaan primer"],
+    "kunci": "Permintaan potensial",
+    "skor": 2.5
+  },
+  {
+    "id": 43,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Penjual yang harga pokoknya di bawah harga pasar disebut ....",
+    "opsi": ["Penjual marginal", "Penjual submarginal", "Penjual supermarginal", "Penjual rata-rata", "Penjual rugi"],
+    "kunci": "Penjual supermarginal",
+    "skor": 2.5
+  },
+  {
+    "id": 44,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Pembeli yang harga taksirannya di atas harga pasar disebut ....",
+    "opsi": ["Pembeli marginal", "Pembeli submarginal", "Pembeli supermarginal", "Pembeli hemat", "Pembeli boros"],
+    "kunci": "Pembeli supermarginal",
+    "skor": 2.5
+  },
+  {
+    "id": 45,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Pasar yang memperjualbelikan faktor produksi disebut ....",
+    "opsi": ["Pasar output", "Pasar input", "Pasar harian", "Pasar tradisional", "Pasar swalayan"],
+    "kunci": "Pasar input",
+    "skor": 2.5
+  },
+  {
+    "id": 46,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Berikut contoh pasar input, kecuali ....",
+    "opsi": ["Pasar tenaga kerja", "Pasar modal", "Pasar tanah", "Pasar sayur-mayur", "Pasar kewirausahaan"],
+    "kunci": "Pasar sayur-mayur",
+    "skor": 2.5
+  },
+  {
+    "id": 47,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Balas jasa yang diterima pemilik faktor produksi tanah adalah ....",
+    "opsi": ["Upah", "Bunga", "Sewa", "Laba", "Gaji"],
+    "kunci": "Sewa",
+    "skor": 2.5
+  },
+  {
+    "id": 48,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Balas jasa yang diterima pemilik faktor produksi tenaga kerja adalah ....",
+    "opsi": ["Upah", "Bunga", "Sewa", "Laba", "Bonus"],
+    "kunci": "Upah",
+    "skor": 2.5
+  },
+  {
+    "id": 49,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Pasar di mana hanya ada satu pembeli disebut ....",
+    "opsi": ["Monopoli", "Oligopoli", "Monopsoni", "Oligopsoni", "Duopoli"],
+    "kunci": "Monopsoni",
+    "skor": 2.5
+  },
+  {
+    "id": 50,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Salah satu ciri pasar monopsoni adalah ....",
+    "opsi": ["Banyak pembeli", "Hanya ada satu pembeli", "Harga ditentukan penjual", "Banyak penjual", "Pembeli tidak punya kekuatan"],
+    "kunci": "Hanya ada satu pembeli",
+    "skor": 2.5
+  },
+  {
+    "id": 51,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Pasar tenaga kerja mempertemukan ....",
+    "opsi": ["Penjual barang dan pembeli barang", "Pencari kerja dan pemberi kerja", "Pemilik modal dan pengusaha", "Petani dan pedagang", "Siswa dan guru"],
+    "kunci": "Pencari kerja dan pemberi kerja",
+    "skor": 2.5
+  },
+  {
+    "id": 52,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Kurva permintaan yang sangat miring (hampir tidur) menunjukkan permintaan bersifat ....",
+    "opsi": ["Inelastis", "Elastis", "Inelastis sempurna", "Kaku", "Tidak elastis"],
+    "kunci": "Elastis",
+    "skor": 2.5
+  },
+  {
+    "id": 53,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Salah satu dampak positif pasar bagi masyarakat adalah ....",
+    "opsi": ["Menimbulkan konsumerisme", "Memudahkan pemenuhan kebutuhan", "Menaikkan harga barang", "Menciptakan monopoli", "Mengurangi lapangan kerja"],
+    "kunci": "Memudahkan pemenuhan kebutuhan",
+    "skor": 2.5
+  },
+  {
+    "id": 54,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Pasar daerah adalah pasar yang ....",
+    "opsi": ["Ada di seluruh dunia", "Ada di satu wilayah tertentu", "Ada hanya di ibu kota", "Melayani ekspor", "Melayani perdagangan antarnegara"],
+    "kunci": "Ada di satu wilayah tertentu",
+    "skor": 2.5
+  },
+  {
+    "id": 55,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Pekan Raya Jakarta (PRJ) termasuk jenis pasar menurut waktu yaitu ....",
+    "opsi": ["Pasar harian", "Pasar mingguan", "Pasar bulanan", "Pasar tahunan", "Pasar temporer"],
+    "kunci": "Pasar tahunan",
+    "skor": 2.5
+  },
+  {
+    "id": 56,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Bursa Efek Indonesia (BEI) adalah contoh pasar ....",
+    "opsi": ["Konkret", "Abstrak", "Harian", "Lokal", "Konsumsi"],
+    "kunci": "Abstrak",
+    "skor": 2.5
+  },
+  {
+    "id": 57,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Permintaan kolektif adalah ....",
+    "opsi": ["Permintaan individu", "Gabungan permintaan individu di pasar", "Permintaan pemerintah", "Permintaan produsen", "Permintaan luar negeri"],
+    "kunci": "Gabungan permintaan individu di pasar",
+    "skor": 2.5
+  },
+  {
+    "id": 58,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Pergeseran kurva permintaan ke kiri disebabkan oleh ....",
+    "opsi": ["Kenaikan pendapatan", "Penurunan harga barang substitusi", "Kenaikan harga barang komplementer", "Pernyataan B dan C benar", "Pernyataan A benar"],
+    "kunci": "Pernyataan B dan C benar",
+    "skor": 2.5
+  },
+  {
+    "id": 59,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Hukum penawaran tidak berlaku jika ....",
+    "opsi": ["Harga barang naik", "Biaya produksi tetap", "Ceteris Paribus tidak terpenuhi", "Teknologi maju", "Ada banyak penjual"],
+    "kunci": "Ceteris Paribus tidak terpenuhi",
+    "skor": 2.5
+  },
+  {
+    "id": 60,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Sangat sulit bagi perusahaan baru untuk masuk ke dalam pasar ....",
+    "opsi": ["Persaingan sempurna", "Monopolistik", "Monopoli", "Tradisional", "Harian"],
+    "kunci": "Monopoli",
+    "skor": 2.5
+  },
+  {
+    "id": 61,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Iklan sangat penting bagi perusahaan yang berada di pasar ....",
+    "opsi": ["Monopoli", "Persaingan sempurna", "Oligopoli dan Monopolistik", "Monopsoni", "Faktor produksi"],
+    "kunci": "Oligopoli dan Monopolistik",
+    "skor": 2.5
+  },
+  {
+    "id": 62,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Sektor yang paling mendekati pasar persaingan sempurna adalah ....",
+    "opsi": ["Pertanian (beras)", "Otomotif", "Telekomunikasi", "Listrik", "Minyak bumi"],
+    "kunci": "Pertanian (beras)",
+    "skor": 2.5
+  },
+  {
+    "id": 63,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Jika koefisien elastisitas penawaran Es < 1, maka disebut ....",
+    "opsi": ["Elastis", "Inelastis", "Elastis uniter", "Inelastis sempurna", "Elastis sempurna"],
+    "kunci": "Inelastis",
+    "skor": 2.5
+  },
+  {
+    "id": 64,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Barang yang memiliki sedikit substitusi cenderung memiliki permintaan ....",
+    "opsi": ["Sangat elastis", "Inelastis", "Elastis uniter", "Elastis sempurna", "Berubah-ubah"],
+    "kunci": "Inelastis",
+    "skor": 2.5
+  },
+  {
+    "id": 65,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Pemberian subsidi oleh pemerintah kepada produsen akan mengakibatkan ....",
+    "opsi": ["Kurva penawaran bergeser ke kiri", "Kurva penawaran bergeser ke kanan", "Harga naik", "Permintaan turun", "Penawaran tetap"],
+    "kunci": "Kurva penawaran bergeser ke kanan",
+    "skor": 2.5
+  },
+  {
+    "id": 66,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Manakah yang merupakan ciri pasar abstrak?",
+    "opsi": ["Barang terlihat jelas", "Transaksi tatap muka", "Barang tidak tersedia di tempat", "Hanya ada di desa", "Pembeli membawa barang langsung"],
+    "kunci": "Barang tidak tersedia di tempat",
+    "skor": 2.5
+  },
+  {
+    "id": 67,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Pasar eceran adalah pasar yang ....",
+    "opsi": ["Menjual barang dalam jumlah besar", "Menjual barang langsung ke konsumen akhir", "Menjual bahan baku", "Menjual barang antik", "Pasar antar grosir"],
+    "kunci": "Menjual barang langsung ke konsumen akhir",
+    "skor": 2.5
+  },
+  {
+    "id": 68,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Pasar yang pembelinya adalah pedagang besar disebut ....",
+    "opsi": ["Pasar eceran", "Pasar grosir", "Pasar harian", "Pasar swalayan", "Pasar barang bekas"],
+    "kunci": "Pasar grosir",
+    "skor": 2.5
+  },
+  {
+    "id": 69,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Dalam pasar persaingan sempurna, harga ditentukan oleh ....",
+    "opsi": ["Pemerintah", "Penjual", "Pembeli", "Mekanisme pasar (permintaan & penawaran)", "Asosiasi pedagang"],
+    "kunci": "Mekanisme pasar (permintaan & penawaran)",
+    "skor": 2.5
+  },
+  {
+    "id": 70,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Minyak dan gas bumi di Indonesia dikelola negara karena ....",
+    "opsi": ["Banyak peminat", "Menguasai hajat hidup orang banyak", "Modal kecil", "Barang mewah", "Permintaan inelastis"],
+    "kunci": "Menguasai hajat hidup orang banyak",
+    "skor": 2.5
+  },
+  {
+    "id": 71,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Pasar kaget termasuk jenis pasar menurut waktu yaitu ....",
+    "opsi": ["Tidaktentu/Temporer", "Harian", "Mingguan", "Bulanan", "Tahunan"],
+    "kunci": "Tidaktentu/Temporer",
+    "skor": 2.5
+  },
+  {
+    "id": 72,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Barang yang permintaannya meningkat saat pendapatan turun disebut ....",
+    "opsi": ["Barang mewah", "Barang normal", "Barang inferior", "Barang substitusi", "Barang komplementer"],
+    "kunci": "Barang inferior",
+    "skor": 2.5
+  },
+  {
+    "id": 73,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Berikut ini faktor yang memengaruhi elastisitas penawaran, kecuali ....",
+    "opsi": ["Waktu produksi", "Daya tahan barang", "Kemudahan produsen masuk pasar", "Selera konsumen", "Stok barang"],
+    "kunci": "Selera konsumen",
+    "skor": 2.5
+  },
+  {
+    "id": 74,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Jika penawaran tetap dan permintaan naik, maka harga keseimbangan akan ....",
+    "opsi": ["Turun", "Tetap", "Naik", "Nol", "Tidak terprediksi"],
+    "kunci": "Naik",
+    "skor": 2.5
+  },
+  {
+    "id": 75,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Jika penawaran naik dan permintaan tetap, maka harga keseimbangan akan ....",
+    "opsi": ["Naik", "Turun", "Tetap", "Sangat mahal", "Hilang"],
+    "kunci": "Turun",
+    "skor": 2.5
+  },
+  {
+    "id": 76,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Pasar faktor produksi kewirausahaan berkaitan dengan ....",
+    "opsi": ["Tenaga kerja fisik", "Keahlian mengelola usaha", "Pinjaman modal", "Sewa gedung", "Pembelian bahan baku"],
+    "kunci": "Keahlian mengelola usaha",
+    "skor": 2.5
+  },
+  {
+    "id": 77,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Balas jasa untuk faktor produksi modal adalah ....",
+    "opsi": ["Upah", "Gaji", "Bunga", "Laba", "Sewa"],
+    "kunci": "Bunga",
+    "skor": 2.5
+  },
+  {
+    "id": 78,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Balas jasa untuk faktor produksi kewirausahaan adalah ....",
+    "opsi": ["Upah", "Bunga", "Sewa", "Laba/Profit", "Honor"],
+    "kunci": "Laba/Profit",
+    "skor": 2.5
+  },
+  {
+    "id": 79,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Siapakah yang menjadi penyedia di pasar faktor produksi?",
+    "opsi": ["Perusahaan (RT Produsen)", "Rumah Tangga Konsumen", "Pemerintah", "Luar Negeri", "Bank"],
+    "kunci": "Rumah Tangga Konsumen",
+    "skor": 2.5
+  },
+  {
+    "id": 80,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Siapakah yang menjadi pengguna di pasar faktor produksi?",
+    "opsi": ["Rumah Tangga Konsumen", "Perusahaan (RT Produsen)", "Siswa", "Petani", "Buruh"],
+    "kunci": "Perusahaan (RT Produsen)",
+    "skor": 2.5
+  },
+  {
+    "id": 81,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Pasar nasional adalah pasar yang ....",
+    "opsi": ["Ada di desa", "Ada di seluruh wilayah satu negara", "Ada antarnegara", "Hanya ada di pasar induk", "Hanya ada di internet"],
+    "kunci": "Ada di seluruh wilayah satu negara",
+    "skor": 2.5
+  },
+  {
+    "id": 82,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Pasar internasional adalah pasar yang ....",
+    "opsi": ["Ada di kota", "Melibatkan penjual dan pembeli dari berbagai negara", "Hanya menjual barang lokal", "Dikelola pemerintah daerah", "Hanya menjual barang bekas"],
+    "kunci": "Melibatkan penjual dan pembeli dari berbagai negara",
+    "skor": 2.5
+  },
+  {
+    "id": 83,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Contoh pasar internasional adalah ....",
+    "opsi": ["Pasar Klewer", "Pasar Turi", "Pasar Kopi di Brazil", "Pasar Minggu", "Pasar Tanah Abang"],
+    "kunci": "Pasar Kopi di Brazil",
+    "skor": 2.5
+  },
+  {
+    "id": 84,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Pasar input tanah bersifat inelastis sempurna karena ....",
+    "opsi": ["Tanah bisa ditambah luasnya", "Tanah sangat murah", "Jumlah tanah tetap/terbatas", "Banyak yang butuh tanah", "Tanah bisa dipindahkan"],
+    "kunci": "Jumlah tanah tetap/terbatas",
+    "skor": 2.5
+  },
+  {
+    "id": 85,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Pasar modal memperjualbelikan ....",
+    "opsi": ["Uang receh", "Barang harian", "Surat berharga jangka panjang (saham/obligasi)", "Tenaga kerja", "Lahan parkir"],
+    "kunci": "Surat berharga jangka panjang (saham/obligasi)",
+    "skor": 2.5
+  },
+  {
+    "id": 86,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Pasar tenaga kerja sangat dipengaruhi oleh ....",
+    "opsi": ["Cuaca", "Tingkat pendidikan dan keahlian", "Harga beras", "Model pakaian", "Biaya parkir"],
+    "kunci": "Tingkat pendidikan dan keahlian",
+    "skor": 2.5
+  },
+  {
+    "id": 87,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Salah satu fungsi pasar adalah pembentuk harga, artinya ....",
+    "opsi": ["Pasar menentukan harga secara sepihak", "Pasar tempat terjadinya tawar menawar hingga ada kesepakatan harga", "Pasar hanya untuk orang kaya", "Pasar menjual barang mahal", "Harga di pasar selalu tetap"],
+    "kunci": "Pasar tempat terjadinya tawar menawar hingga ada kesepakatan harga",
+    "skor": 2.5
+  },
+  {
+    "id": 88,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "E-commerce seperti Shopee/Tokopedia merupakan bentuk pasar ....",
+    "opsi": ["Konkret", "Tradisional", "Abstrak modern", "Pasar harian", "Pasar barter"],
+    "kunci": "Abstrak modern",
+    "skor": 2.5
+  },
+  {
+    "id": 89,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Dalam hukum permintaan, diasumsikan hal-hal lain tetap, istilah ini disebut ....",
+    "opsi": ["Laissez faire", "Ceteris paribus", "Profit oriented", "Invisible hand", "Economic man"],
+    "kunci": "Ceteris paribus",
+    "skor": 2.5
+  },
+  {
+    "id": 90,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Jika kurva permintaan bergeser ke kiri, artinya ....",
+    "opsi": ["Permintaan meningkat", "Permintaan menurun", "Harga barang naik", "Penawaran menurun", "Pasar sedang ramai"],
+    "kunci": "Permintaan menurun",
+    "skor": 2.5
+  },
+  {
+    "id": 91,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Penerapan pajak oleh pemerintah pada suatu barang akan mengakibatkan ....",
+    "opsi": ["Harga turun", "Penawaran meningkat", "Biaya produksi naik dan penawaran turun", "Permintaan meningkat", "Penjual untung besar"],
+    "kunci": "Biaya produksi naik dan penawaran turun",
+    "skor": 2.5
+  },
+  {
+    "id": 92,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Contoh pasar monopsoni adalah ....",
+    "opsi": ["Pasar beras", "Petani teh menjual ke satu pabrik besar", "Banyak toko baju", "Penjual pulsa", "PLN"],
+    "kunci": "Petani teh menjual ke satu pabrik besar",
+    "skor": 2.5
+  },
+  {
+    "id": 93,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Pasar input faktor produksi alam memperjualbelikan ....",
+    "opsi": ["Barang", "Jasa tenaga kerja", "Uang", "Tanah", "Saham"],
+    "kunci": "Tanah",
+    "skor": 2.5
+  },
+  {
+    "id": 94,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Pasar uang mempertemukan ....",
+    "opsi": ["Penjual sayur", "Produsen barang", "Permintaan dan penawaran dana jangka pendek", "Pembeli pakaian", "Distributor barang"],
+    "kunci": "Permintaan dan penawaran dana jangka pendek",
+    "skor": 2.5
+  },
+  {
+    "id": 95,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Contoh pasar konkret adalah ....",
+    "opsi": ["Bursa efek", "Pasar modal", "Pasar tradisional", "Pasar online", "Pasar valuta asing"],
+    "kunci": "Pasar tradisional",
+    "skor": 2.5
+  },
+  {
+    "id": 96,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Pasar bebas adalah pasar yang ....",
+    "opsi": ["Dikendalikan pemerintah", "Tanpa campur tangan pemerintah", "Harga ditetapkan pemerintah", "Tidak ada persaingan", "Tidak ada pembeli"],
+    "kunci": "Tanpa campur tangan pemerintah",
+    "skor": 2.5
+  },
+  {
+    "id": 97,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Dumping adalah praktik menjual barang di luar negeri dengan harga ....",
+    "opsi": ["Lebih tinggi", "Sama", "Lebih rendah", "Tetap", "Mahal"],
+    "kunci": "Lebih rendah",
+    "skor": 2.5
+  },
+  {
+    "id": 98,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Pasar gelap terjadi karena ....",
+    "opsi": ["Harga sesuai pasar", "Barang melimpah", "Adanya pembatasan pemerintah", "Pajak rendah", "Produksi meningkat"],
+    "kunci": "Adanya pembatasan pemerintah",
+    "skor": 2.5
+  },
+  {
+    "id": 99,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Dalam pasar persaingan sempurna, produk bersifat ....",
+    "opsi": ["Terdiferensiasi", "Unik", "Homogen", "Langka", "Berbeda-beda"],
+    "kunci": "Homogen",
+    "skor": 2.5
+  },
+  {
+    "id": 100,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Tujuan utama kegiatan pasar adalah ....",
+    "opsi": ["Mengurangi barang", "Mencapai keuntungan dan memenuhi kebutuhan", "Menghapus produksi", "Mengurangi konsumsi", "Menekan harga"],
+    "kunci": "Mencapai keuntungan dan memenuhi kebutuhan",
+    "skor": 2.5
+  },
+  {
+    "id": 101,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Mekanisme harga ditentukan oleh tarik-menarik antara permintaan dan penawaran merupakan ciri pasar ....",
+    "opsi": ["Monopoli", "Persaingan sempurna", "Komando", "Tradisional", "Barter"],
+    "kunci": "Persaingan sempurna",
+    "skor": 2.5
+  },
+  {
+    "id": 102,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Keadaan di mana jumlah barang yang diminta melebihi jumlah yang ditawarkan pada harga di bawah harga keseimbangan disebut ....",
+    "opsi": ["Surplus", "Shortage", "Ekuilibrium", "Inflasi", "Deflasi"],
+    "kunci": "Shortage",
+    "skor": 2.5
+  },
+  {
+    "id": 103,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Apabila harga barang X turun 20% dan jumlah barang yang diminta naik 40%, maka nilai koefisien elastisitas permintaannya adalah ....",
+    "opsi": ["0.5", "1", "2", "4", "20"],
+    "kunci": "2",
+    "skor": 2.5
+  },
+  {
+    "id": 104,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Faktor manakah yang paling cepat memengaruhi penawaran produk pertanian di pasar harian?",
+    "opsi": ["Perubahan teknologi", "Harga barang di pasar", "Kondisi cuaca saat panen", "Pembangunan pabrik baru", "Perubahan jumlah penduduk"],
+    "kunci": "Kondisi cuaca saat panen",
+    "skor": 2.5
+  },
+  {
+    "id": 105,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Pergeseran kurva penawaran ke kanan menunjukkan ....",
+    "opsi": ["Kenaikan harga barang", "Penurunan jumlah barang", "Peningkatan efisiensi produksi", "Peningkatan biaya tenaga kerja", "Kelangkaan bahan baku"],
+    "kunci": "Peningkatan efisiensi produksi",
+    "skor": 2.5
   }
-  /* ... Silakan masukkan sisa soal lainnya di sini dengan format yang sama ... */
 ]
