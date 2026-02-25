@@ -47,7 +47,7 @@
 
 <div id="loading-overlay">
     <div style="border: 5px solid white; border-top: 5px solid transparent; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite;"></div>
-    <p style="margin-top: 15px; font-weight: 700;">Memproses...</p>
+    <p style="margin-top: 15px; font-weight: 700;">Memuat...</p>
 </div>
 
 <div class="card">
@@ -57,12 +57,8 @@
             <h1 class="title-app">SMAN 1 MUNCAR</h1>
             <p class="subtitle-app">Sumatif Tengah Semester</p>
         </div>
-        <select id="sel-kelas" onchange="updateDaftarNama()">
-            <option value="">-- Pilih Kelas --</option>
-        </select>
-        <select id="sel-nama">
-            <option value="">-- Pilih Nama --</option>
-        </select>
+        <select id="sel-kelas" onchange="updateDaftarNama()"><option value="">-- Pilih Kelas --</option></select>
+        <select id="sel-nama"><option value="">-- Pilih Nama --</option></select>
         <div class="pass-wrapper">
             <input type="password" id="pass" placeholder="Password 4 Digit">
             <span class="toggle-password" onclick="intipPass()">LIHAT</span>
@@ -82,9 +78,9 @@
     </div>
 
     <div id="box-selesai" style="display:none;">
-        <h2 style="color: var(--dark-blue);">UJIAN SELESAI ✅</h2>
-        <p style="margin: 15px 0;">Jawaban Anda telah berhasil diunggah ke server.</p>
-        <button class="btn-utama" style="margin-top:20px;" onclick="logout()">Keluar Aplikasi</button>
+        <h2 style="color: var(--dark-blue);">UJIAN SELESAI</h2>
+        <p>Jawaban telah berhasil diunggah.</p>
+        <button class="btn-utama" style="margin-top:20px;" onclick="logout()">Keluar</button>
     </div>
 </div>
 
@@ -105,11 +101,10 @@
         p.type = p.type === "password" ? "text" : "password";
     }
 
-    // FUNGSI UTAMA LOAD DATA
     window.onload = () => {
         const savedUser = localStorage.getItem('active_user');
         
-        // 1. Cek Auto-Resume
+        // Auto-resume jika halaman di refresh
         if (savedUser) {
             currentUser = savedUser;
             currentKelas = localStorage.getItem('active_kelas');
@@ -125,15 +120,13 @@
             timerInterval = setInterval(updateTimer, 1000);
         }
 
-        // 2. Isi Dropdown Kelas (Selalu jalankan ini agar dropdown terisi jika box-login muncul)
+        // Tampilkan daftar kelas
         if (typeof SISWA_BARU !== 'undefined') {
             const kls = [...new Set(SISWA_BARU.map(s => s.kelas))].sort();
-            const selKelas = document.getElementById('sel-kelas');
-            selKelas.innerHTML = '<option value="">-- Pilih Kelas --</option>';
+            const selK = document.getElementById('sel-kelas');
             kls.forEach(k => {
-                let o = document.createElement('option'); 
-                o.value = k; o.text = k;
-                selKelas.appendChild(o);
+                let o = document.createElement('option'); o.value = k; o.text = k;
+                selK.appendChild(o);
             });
         }
     };
@@ -142,12 +135,10 @@
         const k = document.getElementById('sel-kelas').value;
         const sel = document.getElementById('sel-nama');
         sel.innerHTML = '<option value="">-- Pilih Nama --</option>';
-        if(typeof SISWA_BARU !== 'undefined'){
-            SISWA_BARU.filter(s => s.kelas === k).sort((a,b)=>a.nama.localeCompare(b.nama)).forEach(s => {
-                let o = document.createElement('option'); o.value = s.nama; o.text = s.nama;
-                sel.appendChild(o);
-            });
-        }
+        SISWA_BARU.filter(s => s.kelas === k).sort((a,b)=>a.nama.localeCompare(b.nama)).forEach(s => {
+            let o = document.createElement('option'); o.value = s.nama; o.text = s.nama;
+            sel.appendChild(o);
+        });
     }
 
     function shuffle(array) { return array.sort(() => Math.random() - 0.5); }
@@ -156,26 +147,20 @@
         const u = document.getElementById('sel-nama').value;
         const p = document.getElementById('pass').value;
         const k = document.getElementById('sel-kelas').value;
-        
-        if(!u || !p) return alert("Pilih Nama dan Password!");
-        
         const s = SISWA_BARU.find(x => x.nama === u && x.pass === p);
+        
         if(!s) return alert("Nama atau Password salah!");
 
         document.getElementById('loading-overlay').style.display = 'flex';
         try {
             const respSoal = await fetch('soal.json');
-            if(!respSoal.ok) throw new Error();
             const gudang = await respSoal.json();
             
-            // Filter hanya pilihan-ganda dan acak
-            const filtered = gudang.filter(x => x.tipe === 'pilihan-ganda');
-            dataSoal = shuffle(filtered).slice(0, TOTAL_SOAL);
-            
+            dataSoal = shuffle(gudang.filter(x => x.tipe === 'pilihan-ganda')).slice(0, TOTAL_SOAL);
             currentUser = u; 
             currentKelas = k;
 
-            // Simpan Sesi ke LocalStorage
+            // Simpan sesi ke local storage
             localStorage.setItem('active_user', u);
             localStorage.setItem('active_kelas', k);
             localStorage.setItem('active_soal', JSON.stringify(dataSoal));
@@ -185,25 +170,22 @@
             document.getElementById('box-login').style.display = 'none';
             document.getElementById('box-kuis').style.display = 'block';
             document.getElementById('txt-nama-display').innerText = u;
-            
             tampil();
             timerInterval = setInterval(updateTimer, 1000);
             document.getElementById('loading-overlay').style.display = 'none';
         } catch(e) {
-            alert("Gagal memuat soal. Pastikan file soal.json tersedia di folder.");
+            alert("Gagal memuat soal.");
             document.getElementById('loading-overlay').style.display = 'none';
         }
     }
 
     function tampil() {
         if(curIdx >= dataSoal.length) return kirimJawabanAkhir();
-        
-        localStorage.setItem('active_idx', curIdx); // Simpan progres nomor soal
+        localStorage.setItem('active_idx', curIdx);
 
         const s = dataSoal[curIdx];
         document.getElementById('txt-idx').innerText = curIdx + 1;
         document.getElementById('progress-fill').style.width = ((curIdx / TOTAL_SOAL) * 100) + "%";
-        
         let h = `<h3 style="text-align:left; margin-bottom:20px;">${s.pertanyaan}</h3>`;
         s.opsi.forEach(o => {
             h += `<label class="opsi-label"><input type="radio" name="j" value="${o}"><span class="checkmark"></span><span>${o}</span></label>`;
@@ -216,17 +198,18 @@
         if(!sel) return alert("Pilih satu jawaban!");
         
         const s = dataSoal[curIdx];
-        let ansKey = `ans_${currentUser}`;
-        let ans = JSON.parse(localStorage.getItem(ansKey) || "[]");
+        let ans = JSON.parse(localStorage.getItem(`ans_${currentUser}`) || "[]");
         
+        // PASTIKAN PROPERTI 'kelas' ADA DI SINI
         ans.push({ 
             nama: currentUser, 
+            kelas: currentKelas, 
             id_soal: s.id, 
             jawaban: sel.value, 
             status: sel.value === s.kunci ? "Benar" : "Salah" 
         });
         
-        localStorage.setItem(ansKey, JSON.stringify(ans));
+        localStorage.setItem(`ans_${currentUser}`, JSON.stringify(ans));
         curIdx++; 
         tampil();
     }
@@ -235,42 +218,24 @@
         document.getElementById('loading-overlay').style.display = 'flex';
         const ans = JSON.parse(localStorage.getItem(`ans_${currentUser}`) || "[]");
         try {
-            // Kirim ke Google Sheets
             await fetch(URL_APP, { method: "POST", mode: "no-cors", body: JSON.stringify(ans) });
-            
+            localStorage.clear();
             document.getElementById('box-kuis').style.display = 'none';
             document.getElementById('box-selesai').style.display = 'block';
-            
-            // Bersihkan memori ujian
-            localStorage.removeItem('active_user');
-            localStorage.removeItem('active_kelas');
-            localStorage.removeItem('active_soal');
-            localStorage.removeItem('active_idx');
-            localStorage.removeItem('timer_sisa');
-        } catch(e) { 
-            alert("Koneksi internet bermasalah. Segera lapor pengawas!"); 
-        }
+        } catch(e) { alert("Koneksi gagal."); }
         document.getElementById('loading-overlay').style.display = 'none';
     }
 
     function updateTimer() {
         sisaWaktu--;
-        localStorage.setItem('timer_sisa', sisaWaktu); 
-
+        localStorage.setItem('timer_sisa', sisaWaktu);
         let m = Math.floor(sisaWaktu / 60);
         let s = sisaWaktu % 60;
         document.getElementById('timer').innerText = `Waktu Tersisa: ${m}:${s < 10 ? '0'+s : s}`;
-        
-        if(sisaWaktu <= 0) { 
-            clearInterval(timerInterval); 
-            kirimJawabanAkhir(); 
-        }
+        if(sisaWaktu <= 0) { clearInterval(timerInterval); kirimJawabanAkhir(); }
     }
 
-    function logout() { 
-        localStorage.clear(); 
-        location.reload(); 
-    }
+    function logout() { location.reload(); }
 </script>
 </body>
 </html>
