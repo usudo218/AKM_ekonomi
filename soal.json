@@ -1,68 +1,31 @@
 [
-    {
-        "id": 1,
-        "tipe": "pilihan-ganda",
-        "pertanyaan": "Permintaan dalam ilmu ekonomi adalah ....",
-        "opsi": [
-            "Keinginan seseorang terhadap suatu barang",
-            "Jumlah barang yang ditawarkan produsen",
-            "Keinginan yang disertai kemampuan dan kesediaan untuk membeli pada berbagai tingkat harga",
-            "Kebutuhan manusia yang tidak terbatas",
-            "Jumlah barang yang dibeli konsumen dalam satu waktu tertentu"
-        ],
-        "kunci": "Keinginan yang disertai kemampuan dan kesediaan untuk membeli pada berbagai tingkat harga"
-    },
-    {
-        "id": 2,
-        "tipe": "pilihan-ganda",
-        "pertanyaan": "Menurut hukum permintaan, apabila harga suatu barang naik maka ....",
-        "opsi": [
-            "Jumlah barang yang diminta akan naik",
-            "Jumlah barang yang diminta tetap",
-            "Jumlah barang yang diminta turun",
-            "Permintaan tidak terpengaruh",
-            "Penawaran akan turun"
-        ],
-        "kunci": "Jumlah barang yang diminta turun"
-    },
-    {
-        "id": 3,
-        "tipe": "pilihan-ganda",
-        "pertanyaan": "Berikut ini yang bukan merupakan faktor yang memengaruhi permintaan adalah ....",
-        "opsi": [
-            "Harga barang itu sendiri",
-            "Pendapatan konsumen",
-            "Selera masyarakat",
-            "Biaya produksi",
-            "Harga barang substitusi"
-        ],
-        "kunci": "Biaya produksi"
-    },
-    {
-        "id": 4,
-        "tipe": "pilihan-ganda",
-        "pertanyaan": "Kurva permintaan biasanya berbentuk ....",
-        "opsi": [
-            "Garis lurus vertikal",
-            "Garis lurus horizontal",
-            "Miring dari kiri bawah ke kanan atas",
-            "Miring dari kiri atas ke kanan bawah",
-            "Tidak beraturan"
-        ],
-        "kunci": "Miring dari kiri atas ke kanan bawah"
-    },
-    {
-        "id": 5,
-        "tipe": "pilihan-ganda",
-        "pertanyaan": "Jika pendapatan masyarakat meningkat dan barang tersebut merupakan barang normal, maka ....",
-        "opsi": [
-            "Kurva permintaan bergeser ke kiri",
-            "Kurva permintaan bergeser ke kanan",
-            "Terjadi pergerakan sepanjang kurva",
-            "Kurva menjadi vertikal",
-            "Permintaan menurun"
-        ],
-        "kunci": "Kurva permintaan bergeser ke kanan"
-    }
-    /* ... data berlanjut sampai soal ke-105 ... */
+  {
+    "id": 1,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Permintaan dalam ilmu ekonomi adalah ....",
+    "opsi": [
+      "Keinginan seseorang terhadap suatu barang",
+      "Jumlah barang yang ditawarkan produsen",
+      "Keinginan yang disertai kemampuan dan kesediaan untuk membeli pada berbagai tingkat harga",
+      "Kebutuhan manusia yang tidak terbatas",
+      "Jumlah barang yang dibeli konsumen dalam satu waktu tertentu"
+    ],
+    "kunci": "Keinginan yang disertai kemampuan dan kesediaan untuk membeli pada berbagai tingkat harga",
+    "skor": 2.5
+  },
+  {
+    "id": 2,
+    "tipe": "pilihan-ganda",
+    "pertanyaan": "Menurut hukum permintaan, apabila harga suatu barang naik maka ....",
+    "opsi": [
+      "Jumlah barang yang diminta akan naik",
+      "Jumlah barang yang diminta tetap",
+      "Jumlah barang yang diminta turun",
+      "Permintaan tidak terpengaruh",
+      "Penawaran akan turun"
+    ],
+    "kunci": "Jumlah barang yang diminta turun",
+    "skor": 2.5
+  }
+  /* ... total 105 soal ... */
 ]
