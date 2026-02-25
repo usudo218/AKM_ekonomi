@@ -40,13 +40,14 @@
         .btn-utama { width: 100%; padding: 16px; background: var(--primary-blue); color: white; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; text-transform: uppercase; }
         .footer { margin-top: 25px; color: white; font-size: 11px; text-align: center; opacity: 0.9; }
         #loading-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(52, 152, 219, 0.95); display: none; flex-direction: column; justify-content: center; align-items: center; z-index: 100; color: white; }
+        @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
 
 <div id="loading-overlay">
     <div style="border: 5px solid white; border-top: 5px solid transparent; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite;"></div>
-    <p style="margin-top: 15px; font-weight: 700;">Memuat Soal...</p>
+    <p style="margin-top: 15px; font-weight: 700;">Memuat...</p>
 </div>
 
 <div class="card">
@@ -87,8 +88,12 @@
 
 <script>
     const URL_APP = "https://script.google.com/macros/s/AKfycbxYPrRnb7veMCfURpmnP4oDeKOTygyoFrAyEB4g2uBTjQAGynpc-LV9bMMOPrBvQohoNQ/exec"; 
-    let dataSoal = []; let curIdx = 0; let currentUser = ""; let currentKelas = "";
-    let sisaWaktu = 3600; let timerInterval;
+    let dataSoal = []; 
+    let curIdx = 0; 
+    let currentUser = ""; 
+    let currentKelas = "";
+    let sisaWaktu = 3600; 
+    let timerInterval;
     const TOTAL_SOAL = 50;
 
     function intipPass() {
@@ -96,17 +101,32 @@
         p.type = p.type === "password" ? "text" : "password";
     }
 
+    // FUNGSI AUTO-RESUME SAAT REFRESH
     window.onload = () => {
         const savedUser = localStorage.getItem('active_user');
+        
         if (savedUser) {
-            alert("Melanjutkan sesi sebelumnya...");
-            location.reload(); // Atau panggil fungsi resume jika diperlukan
+            currentUser = savedUser;
+            currentKelas = localStorage.getItem('active_kelas');
+            dataSoal = JSON.parse(localStorage.getItem('active_soal'));
+            curIdx = parseInt(localStorage.getItem('active_idx') || "0");
+            sisaWaktu = parseInt(localStorage.getItem('timer_sisa') || "3600");
+
+            document.getElementById('box-login').style.display = 'none';
+            document.getElementById('box-kuis').style.display = 'block';
+            document.getElementById('txt-nama-display').innerText = currentUser;
+            
+            tampil();
+            timerInterval = setInterval(updateTimer, 1000);
+        } else {
+            if (typeof SISWA_BARU !== 'undefined') {
+                const kls = [...new Set(SISWA_BARU.map(s => s.kelas))].sort();
+                kls.forEach(k => {
+                    let o = document.createElement('option'); o.value = k; o.text = k;
+                    document.getElementById('sel-kelas').appendChild(o);
+                });
+            }
         }
-        const kls = [...new Set(SISWA_BARU.map(s => s.kelas))].sort();
-        kls.forEach(k => {
-            let o = document.createElement('option'); o.value = k; o.text = k;
-            document.getElementById('sel-kelas').appendChild(o);
-        });
     };
 
     function updateDaftarNama() {
@@ -138,6 +158,13 @@
             dataSoal = shuffle(gudang.filter(x => x.tipe === 'pilihan-ganda')).slice(0, TOTAL_SOAL);
             currentUser = u; currentKelas = k;
 
+            // Simpan status awal ke LocalStorage
+            localStorage.setItem('active_user', u);
+            localStorage.setItem('active_kelas', k);
+            localStorage.setItem('active_soal', JSON.stringify(dataSoal));
+            localStorage.setItem('active_idx', "0");
+            localStorage.setItem('timer_sisa', "3600");
+
             document.getElementById('box-login').style.display = 'none';
             document.getElementById('box-kuis').style.display = 'block';
             document.getElementById('txt-nama-display').innerText = u;
@@ -145,13 +172,16 @@
             timerInterval = setInterval(updateTimer, 1000);
             document.getElementById('loading-overlay').style.display = 'none';
         } catch(e) {
-            alert("Gagal memuat soal. Pastikan file soal.json ada dan formatnya benar.");
+            alert("Gagal memuat soal. Pastikan file soal.json tersedia.");
             document.getElementById('loading-overlay').style.display = 'none';
         }
     }
 
     function tampil() {
         if(curIdx >= dataSoal.length) return kirimJawabanAkhir();
+        
+        localStorage.setItem('active_idx', curIdx); // Simpan progres nomor soal
+
         const s = dataSoal[curIdx];
         document.getElementById('txt-idx').innerText = curIdx + 1;
         document.getElementById('progress-fill').style.width = ((curIdx / TOTAL_SOAL) * 100) + "%";
@@ -167,15 +197,19 @@
         if(!sel) return alert("Pilih satu jawaban!");
         
         const s = dataSoal[curIdx];
-        let ans = JSON.parse(localStorage.getItem(`ans_${currentUser}`) || "[]");
+        let ansKey = `ans_${currentUser}`;
+        let ans = JSON.parse(localStorage.getItem(ansKey) || "[]");
+        
         ans.push({ 
             nama: currentUser, 
             id_soal: s.id, 
             jawaban: sel.value, 
             status: sel.value === s.kunci ? "Benar" : "Salah" 
         });
-        localStorage.setItem(`ans_${currentUser}`, JSON.stringify(ans));
-        curIdx++; tampil();
+        
+        localStorage.setItem(ansKey, JSON.stringify(ans));
+        curIdx++; 
+        tampil();
     }
 
     async function kirimJawabanAkhir() {
@@ -185,21 +219,27 @@
             await fetch(URL_APP, { method: "POST", mode: "no-cors", body: JSON.stringify(ans) });
             document.getElementById('box-kuis').style.display = 'none';
             document.getElementById('box-selesai').style.display = 'block';
+            
+            // Hapus semua sesi ujian setelah sukses kirim
             localStorage.clear();
-        } catch(e) { alert("Koneksi internet terputus saat mengirim."); }
+        } catch(e) { alert("Koneksi gagal saat mengirim jawaban."); }
         document.getElementById('loading-overlay').style.display = 'none';
     }
 
     function updateTimer() {
         sisaWaktu--;
+        localStorage.setItem('timer_sisa', sisaWaktu); // Simpan sisa waktu tiap detik
+
         let m = Math.floor(sisaWaktu / 60);
         let s = sisaWaktu % 60;
         document.getElementById('timer').innerText = `Waktu Tersisa: ${m}:${s < 10 ? '0'+s : s}`;
         if(sisaWaktu <= 0) { clearInterval(timerInterval); kirimJawabanAkhir(); }
     }
-    function logout() { location.reload(); }
+
+    function logout() { 
+        localStorage.clear(); 
+        location.reload(); 
+    }
 </script>
-<style>@keyframes spin { to { transform: rotate(360deg); } }</style>
 </body>
 </html>
-
